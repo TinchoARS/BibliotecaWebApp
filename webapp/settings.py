@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #mis apps
-    'api',
     'biblioteca',
 ]
 
@@ -60,7 +59,7 @@ TEMPLATES = [
         'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
-            'environment': 'biblioteca.jinja2.ini_jinja2',
+            'environment': 'webapp.jinja2.ini_jinja2',
             'auto_reload': DEBUG,
             'autoescape': True
         },
