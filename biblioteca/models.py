@@ -1,5 +1,11 @@
 from django.db import models
 
+class Autor(models.Model):
+    nombre=models.CharField(max_length=30)
+    apellido=models.CharField(max_length=30)
+    nacionalidad=models.CharField(max_length=60)
+    activo=models.BooleanField(default=True)
+
 class Libro(models.Model):
     titulo=models.CharField(max_length=30)
     descripcion=models.CharField(max_length=255)
@@ -7,7 +13,6 @@ class Libro(models.Model):
     autor=models.ForeignKey(Autor,related_name="autor",on_delete=models.CASCADE)
     activo=models.BooleanField(default=True)
 
-# Create your models here.
 class Socio(models.Model):
     nombre=models.CharField(max_length=30)
     apellido=models.CharField(max_length=30)
