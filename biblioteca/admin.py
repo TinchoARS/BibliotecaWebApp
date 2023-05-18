@@ -19,3 +19,5 @@ class SocioAdmin(admin.ModelAdmin):
     list_filter = [
         "activo"
     ]
+
+admin.site.register(Socio,SocioAdmin)
