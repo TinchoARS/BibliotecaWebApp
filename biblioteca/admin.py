@@ -1,3 +1,21 @@
 from django.contrib import admin
+from biblioteca.models import Socio
 
-# Register your models here.
+class SocioAdmin(admin.ModelAdmin):
+    model= Socio
+    
+    list_display=[
+    "nombre",
+    "apellido",
+    "fecha_nacimiento",
+    "activo",
+    ]
+    
+    search_fields = [
+        "nombre",
+        "apellido",
+        
+    ]
+    list_filter = [
+        "activo"
+    ]
