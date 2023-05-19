@@ -73,7 +73,29 @@ class PrestamoLibroAdmin(admin.ModelAdmin):
         'empleado'
     ]
 
+class EmpleadoAdmin(admin.ModelAdmin):
+    model = Empleado
+    
+    list_display=[
+        "nombre",
+        "apellido",
+        "numero_legajo",
+        "activo",
+    ]
+    list_search = [
+        "nombre",
+        "apellido",
+    ]
+    list_filter = [
+        "activo"
+    ]
+    
+    
+    
+    
+
 admin.site.register(Socio,SocioAdmin)
 admin.site.register(Autor,Autor_admin)
 admin.site.register(Libro,LibroAdmin)
 admin.site.register(PrestamoLibro,PrestamoLibroAdmin)
+admin.site.register(Empleado,EmpleadoAdmin)
