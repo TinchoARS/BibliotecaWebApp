@@ -19,3 +19,6 @@ class Socio(models.Model):
     fecha_nacimiento=models.DateField()
     activo=models.BooleanField(default=True)
 
+class Empleado(models.Model):
+    pass
+
