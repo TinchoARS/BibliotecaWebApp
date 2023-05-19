@@ -1,5 +1,5 @@
 from django.contrib import admin
-from biblioteca.models import Socio,Autor
+from biblioteca.models import Socio,Autor,Libro
 
 class SocioAdmin(admin.ModelAdmin):
     model= Socio
