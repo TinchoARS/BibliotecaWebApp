@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Autor(models.Model):
     nombre=models.CharField(max_length=30)
@@ -16,9 +17,11 @@ class Libro(models.Model):
 class Socio(models.Model):
     nombre=models.CharField(max_length=30)
     apellido=models.CharField(max_length=30)
-    fecha_nacimiento=models.DateField()
+    fecha_nacimiento=models.DateField(default=date.today)
     activo=models.BooleanField(default=True)
 
 class Empleado(models.Model):
-    pass
-
+    nombre=models.CharField(max_length=30)
+    apellido=models.CharField(max_length=30)
+    numero_legajo=models.CharField(max_length=30)
+    activo=models.BooleanField(default=True)

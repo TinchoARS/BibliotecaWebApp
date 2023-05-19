@@ -40,5 +40,24 @@ class Autor_admin(admin.ModelAdmin):
         'nacionalidad',
     ]
 
+class LibroAdmin(admin.ModelAdmin):
+    model= Libro
+    
+    list_display=[
+    "isbn",
+    "titulo",
+    "autor",
+    "activo",
+    ]
+    
+    search_fields = [
+        "titulo",
+        
+    ]
+    list_filter = [
+        "activo"
+    ]
+
 admin.site.register(Socio,SocioAdmin)
 admin.site.register(Autor,Autor_admin)
+admin.site.register(Libro,LibroAdmin)
