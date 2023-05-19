@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar los datos de un registro de empleado</title>
+</head>
+<body>
+    <form method="post"
+        {%csrf_token%}
+        nombre:<input type="text" name="nombre" value="{{empleado.nombre}}">
+        apellido:<input type="text" name='apellido' value="{{empleado.apellido}}"
+        numero_legajo:<input type="number" name="numero_legajo" value="{{empleado.numero_legajo}}"
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>
