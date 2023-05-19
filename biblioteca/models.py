@@ -25,3 +25,9 @@ class Empleado(models.Model):
     apellido=models.CharField(max_length=30)
     numero_legajo=models.CharField(max_length=30)
     activo=models.BooleanField(default=True)
+class PrestamoLibro(models.Model):
+    fecha_prestamos=models.DateField(default=date.today)
+    fecha_devolucion=models.DateField(default=date.today)
+    socio=models.ForeignKey(Socio,related_name='Socio',on_delete=models.CASCADE)
+    empleado=models.ForeignKey(Empleado,related_name='Empleado', on_delete=models.CASCADE)
+    libro=models.ForeignKey(Libro,related_name='libro', on_delete=models.CASCADE)
