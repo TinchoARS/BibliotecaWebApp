@@ -1,5 +1,5 @@
 from django.contrib import admin
-from biblioteca.models import Socio,Autor,Libro
+from biblioteca.models import Socio,Autor,Libro,PrestamoLibro
 
 class SocioAdmin(admin.ModelAdmin):
     model= Socio
@@ -11,7 +11,7 @@ class SocioAdmin(admin.ModelAdmin):
     "activo",
     ]
     
-    search_fields = [
+    list_search = [
         "nombre",
         "apellido",
         
@@ -29,7 +29,7 @@ class Autor_admin(admin.ModelAdmin):
     'activo',
     ]
 
-    search_fields = [
+    list_search = [
         'nombre',
         'apellido',
         
@@ -57,7 +57,23 @@ class LibroAdmin(admin.ModelAdmin):
     list_filter = [
         "activo"
     ]
+class PrestamoLibroAdmin(admin.ModelAdmin):
+    model = PrestamoLibro
+
+    list_display=[
+        "fecha_prestamos",
+        "fecha_devolucion",
+        "socio",
+        "empleado",
+        "libro",
+    ]
+    list_search=[
+        'socio',
+        'libro',
+        'empleado'
+    ]
 
 admin.site.register(Socio,SocioAdmin)
 admin.site.register(Autor,Autor_admin)
 admin.site.register(Libro,LibroAdmin)
+admin.site.register(PrestamoLibro,PrestamoLibroAdmin)

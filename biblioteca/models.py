@@ -25,6 +25,7 @@ class Empleado(models.Model):
     apellido=models.CharField(max_length=30)
     numero_legajo=models.CharField(max_length=30)
     activo=models.BooleanField(default=True)
+    
 class PrestamoLibro(models.Model):
     fecha_prestamos=models.DateField(default=date.today)
     fecha_devolucion=models.DateField(default=date.today)
