@@ -11,7 +11,7 @@ class SocioAdmin(admin.ModelAdmin):
     "activo",
     ]
     
-    list_search = [
+    search_fields = [
         "nombre",
         "apellido",
         
@@ -29,7 +29,7 @@ class Autor_admin(admin.ModelAdmin):
     'activo',
     ]
 
-    list_search = [
+    search_fields = [
         'nombre',
         'apellido',
         
@@ -67,10 +67,10 @@ class PrestamoLibroAdmin(admin.ModelAdmin):
         "empleado",
         "libro",
     ]
-    list_search=[
-        'socio',
-        'libro',
-        'empleado'
+    search_fields = [
+        'Socio__nombre',
+        'Libro__titulo',
+        'Empleado__nombre'
     ]
 
 admin.site.register(Socio,SocioAdmin)
