@@ -1,0 +1,41 @@
+
+<html>
+
+    <head>
+        <title>Lista de Empleados</title>
+    </head>
+     
+    <body>
+     
+            <a>
+                Agregar Empleado
+            </a>
+            <br><br>
+            
+            <table">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nro de legajo</th>
+                    <th>Activo</th>
+                </tr>
+
+                {% for empleado in listado_empleados %}
+
+                    <tr>
+
+                        <td>{{ empleado.id }}</td>
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.apellidos }}</td>
+                        <td>{{ empleado.numero_legajo }}</td> 
+                        <td>{{ empleado.activo }}</td> 
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+    </body>
+
+</html>
