@@ -20,7 +20,7 @@ class Libro(models.Model):
 class Socio(models.Model):
     nombre=models.CharField(max_length=30)
     apellido=models.CharField(max_length=30)
-    fecha_nacimiento=models.DateField(default=date.today)
+    fecha_nacimiento=models.DateField(null=True, blank=True)
     activo=models.BooleanField(default=True)
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
@@ -37,7 +37,7 @@ class Empleado(models.Model):
 class PrestamoLibro(models.Model):
     fecha_prestamos=models.DateField(default=date.today)
     fecha_devolucion=models.DateField(default=date.today)
-    socio=models.ForeignKey(Socio,related_name='Socio',on_delete=models.CASCADE)
+    socio=models.ForeignKey(Socio,related_name='Prestamos',on_delete=models.CASCADE)
     empleado=models.ForeignKey(Empleado,related_name='Empleado', on_delete=models.CASCADE)
     libro=models.ForeignKey(Libro,related_name='libro', on_delete=models.CASCADE)
 
