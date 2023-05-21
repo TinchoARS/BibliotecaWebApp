@@ -35,10 +35,6 @@ def activar_empleado(request, id):
     return render(request, 'mensaje_activacion.html', {'mensaje': mensaje})
 
 def registrar_empleado(request):
-    listadoDeEmpleados=Empleado.objects.all()
-    context = {
-        "listadoDeEmpleados":listadoDeEmpleados
-    }
     if request.POST:
         nombre_empleado = request.POST["nombre"]
         apellido_empleado = request.POST["apellido"]
@@ -49,5 +45,5 @@ def registrar_empleado(request):
         apellido=apellido_empleado,
         numero_legajo=numeroLeg_empleado
         )
-    return render(request,"biblioteca/registrar_empleado.html",context)
+    return render(request,"biblioteca/registrar_empleado.html")
 
