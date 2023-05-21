@@ -8,12 +8,12 @@
 </head>
 <body>
     <form method="post"
-        {%csrf_token%}
+           {% csrf_token %}
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" values= "{{empleado.nombre}}" required>
         
         <label for="2apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido"  value="{{empleado.apellido}} required>
+        <input type="text" id="apellido" name="apellido"  value="{{empleado.apellido}}" required>
         
         <label for="numero_legajo">Número de Legajo:</label>
         <input type="text" id="numero_legajo" name="numero_legajo" value="{{empleado.numero_legajo}}" required>

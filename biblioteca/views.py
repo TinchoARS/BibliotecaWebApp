@@ -45,5 +45,5 @@ def registrar_empleado(request):
         apellido=apellido_empleado,
         numero_legajo=numeroLeg_empleado
         )
-    return render(request,"biblioteca/registrar_empleado.html")
+    return render(request,"biblioteca/nuevos_empleados.html")
 
