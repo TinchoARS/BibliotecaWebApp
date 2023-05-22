@@ -7,8 +7,8 @@
     <title>Actualizar los datos de un registro de empleado</title>
 </head>
 <body>
-    <form method="post"
-        {%csrf_token%}
+    <form method="post">
+        {% csrf_token %}
         nombre:<input type="text" name="nombre" value="{{empleado.nombre}}">
         apellido:<input type="text" name='apellido' value="{{empleado.apellido}}">
         numero_legajo:<input type="text" name="numero_legajo" value="{{empleado.numero_legajo}}">

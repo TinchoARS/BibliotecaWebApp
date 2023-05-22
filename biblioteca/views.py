@@ -58,3 +58,26 @@ def listado_empleados(request):
         "biblioteca/listado_empleados.html",
         context,
     )
+
+def actualizar_datos_empleado(request, empleado_id):
+    empleado= Empleado.objects.get(id=empleado_id)
+
+    context= {
+        "empleado":empleado
+    }
+    if request.POST:
+        nombre_empleado = request.POST["nombre"]
+        apellido_empleado = request.POST["apellido"]
+        numeroLeg_empleado = request.POST["numero_legajo"]
+
+        empleado.nombre= nombre_empleado
+        empleado.apellido= apellido_empleado
+        empleado.numero_legajo= numeroLeg_empleado
+
+        empleado.save()
+
+    return render(
+        request,
+        "biblioteca/actualizar_empleado.html",
+        context
+    )
