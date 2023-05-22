@@ -34,12 +34,11 @@ class Empleado(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}:{self.numero_legajo}"
 
-class PrestamoLibro(models.Model):
-    fecha_prestamos=models.DateField(default=date.today)
-    fecha_devolucion=models.DateField(default=date.today)
-    socio=models.ForeignKey(Socio,related_name='Prestamos',on_delete=models.CASCADE)
-    empleado=models.ForeignKey(Empleado,related_name='Empleado', on_delete=models.CASCADE)
-    libro=models.ForeignKey(Libro,related_name='libro', on_delete=models.CASCADE)
-
+class Prestamo_Libro(models.Model):
+    fecha_prestamo = models.DateField(default=date.today)
+    fecha_devolucion = models.DateField(default=date.today)
+    socio = models.ForeignKey('Socio', related_name='prestamos', on_delete=models.CASCADE)
+    empleado = models.ForeignKey('Empleado', related_name='prestamos', on_delete=models.CASCADE)
+    libro = models.ForeignKey('Libro', related_name='prestamos', on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.socio.nombre}"

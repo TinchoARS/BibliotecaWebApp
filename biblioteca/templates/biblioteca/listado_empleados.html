@@ -1,0 +1,41 @@
+
+<html>
+
+    <head>
+        <title>Lista de Empleados</title>
+    </head>
+     
+    <body>
+     
+            <a>
+                Lista de empleados
+            </a>
+            <br><br>
+            
+            <table border="1" width="600">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nro de legajo</th>
+                    <th>Activo</th>
+                </tr>
+
+                {% for empleado in lista_empleados %}
+
+                    <tr>
+
+                        <td>{{ empleado.id }}</td>
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.apellido }}</td>
+                        <td>{{ empleado.numero_legajo }}</td> 
+                        <td>{{ empleado.activo }}</td> 
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+    </body>
+
+</html>
