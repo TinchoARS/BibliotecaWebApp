@@ -7,7 +7,7 @@
     <title>Registrar nuevos empleados</title>
 </head>
 <body>
-    <form method="post"
+    <form method="post">
         {%csrf_token%}
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" values= "{{empleado.nombre}}" required>
