@@ -47,3 +47,14 @@ def registrar_empleado(request):
         )
     return render(request,"biblioteca/nuevos_empleados.html")
 
+def listado_empleados(request):
+    lista_empleados = Empleado.objects.all()
+
+    context= {
+        "lista_empleados" : lista_empleados
+    }
+    return render(
+        request,
+        "biblioteca/listado_empleados.html",
+        context,
+    )
