@@ -3,7 +3,7 @@ from django.shortcuts import render,get_object_or_404, HttpResponse
 
 from django.shortcuts import render,HttpResponse
 
-from biblioteca.models import Empleado
+from biblioteca.models import Empleado, Autor
 
 # Create your views here.
 def saludar(request):
@@ -81,3 +81,15 @@ def actualizar_datos_empleado(request, empleado_id):
         "biblioteca/actualizar_empleado.html",
         context
     )
+
+def desactivar_autor(request, id):
+    autor= get_object_or_404(Autor, id=id)
+    
+    if autor.activo:
+        autor.activo=False
+        autor.save()
+        mensaje= "Autor desactivado correctamente"
+        
+    return render(request, 'desactivar_autor.html', {'mensaje':mensaje})    
+    
+    
