@@ -1,5 +1,5 @@
 from django.contrib import admin
-from biblioteca.models import Socio,Autor,Libro,Prestamo_Libro,Empleado
+from biblioteca.models import Socio,Autor,Libro,PrestamoLibro,Empleado
 
 class SocioAdmin(admin.ModelAdmin):
     model= Socio
@@ -58,7 +58,7 @@ class LibroAdmin(admin.ModelAdmin):
         "activo"
     ]
 class Prestamo_LibroAdmin(admin.ModelAdmin):
-    model = Prestamo_Libro
+    model = PrestamoLibro
 
     list_display=[
         "fecha_prestamo",
@@ -97,5 +97,5 @@ class EmpleadoAdmin(admin.ModelAdmin):
 admin.site.register(Socio,SocioAdmin)
 admin.site.register(Autor,Autor_admin)
 admin.site.register(Libro,LibroAdmin)
-admin.site.register(Prestamo_Libro,Prestamo_LibroAdmin)
+admin.site.register(PrestamoLibro,Prestamo_LibroAdmin)
 admin.site.register(Empleado,EmpleadoAdmin)
