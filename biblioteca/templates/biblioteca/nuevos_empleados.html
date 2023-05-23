@@ -7,13 +7,9 @@
     <title>Registrar nuevos empleados</title>
 </head>
 <body>
-<<<<<<< HEAD:biblioteca/templates/nuevos_empleados.html
     <form method="post">
         {%csrf_token%}
-=======
-    <form method="post"
-           {% csrf_token %}
->>>>>>> a3058e1555a929731b58a902eaedc6ecb9db8d3c:biblioteca/templates/biblioteca/nuevos_empleados.html
+
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" values= "{{empleado.nombre}}" required>
         
