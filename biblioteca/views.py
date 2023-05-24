@@ -42,11 +42,7 @@ def registrar_empleado(request):
 def listado_empleados(request):
     lista_empleados = Empleado.objects.all()
 
-    return render(
-        request,
-        "biblioteca/listado_empleados.html",
-        {"lista_empleados" : lista_empleados}
-    )
+    return render(request, "biblioteca/listado_empleados.html", {"lista_empleados" : lista_empleados})
 
 def actualizar_datos_empleado(request, empleado_id):
     empleado = Empleado.objects.get(id=empleado_id)
@@ -62,12 +58,10 @@ def actualizar_datos_empleado(request, empleado_id):
 
         empleado.save()
 
-    return render(
-        request,
-        "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
+    return render(request, "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
 
 def desactivar_autor(request, id):
-    autor= get_object_or_404(Autor, id=id)
+    autor = get_object_or_404(Autor, id=id)
     
     if autor.activo:
         autor.activo=False
