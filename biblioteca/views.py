@@ -69,4 +69,16 @@ def desactivar_autor(request, id):
         mensaje= "Autor desactivado correctamente"
         
     return render(request, 'desactivar_autor.html', {'mensaje':mensaje})    
-    
+
+def nuevo_autores(request):
+    if request.POST:
+        nombre_autor = request.POST["nombre"]
+        apellido_autor = request.POST["apellido"]
+        nacionalidad_autor = request.POST["nacionalidad"]
+
+        Autor.objects.create(
+        nombre = nombre_autor,
+        apellido = apellido_autor,
+        nacionalidad = nacionalidad_autor
+        )
+    return render(request,"biblioteca/nuevos_autores.html")
