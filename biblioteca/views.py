@@ -1,24 +1,16 @@
-
 from django.shortcuts import render,get_object_or_404, HttpResponse
-
-from django.shortcuts import render,HttpResponse
-
 from biblioteca.models import Empleado, Autor
 
 # Create your views here.
-def saludar(request):
-    return HttpResponse("hola")
-
-
 def desactivar_empleado(request, id):
-    Empleado= get_object_or_404(Empleado, id=id)
+    empleado = get_object_or_404(Empleado, id=id)
     
-    if Empleado.activo:
-        Empleado.activo=False
-        Empleado.save()
-        mensaje= "Empleado desactivado correctamente"
+    if empleado.activo:
+        empleado.activo = False
+        empleado.save()
+        mensaje = "Empleado desactivado correctamente"
     else:
-        mensaje= "Empleado ya esta desactivado"
+        mensaje = "Empleado ya esta desactivado"
     
     return render(request, 'desactivar_empleado.html',{'mensaje':mensaje})
 
@@ -41,46 +33,38 @@ def registrar_empleado(request):
         numeroLeg_empleado = request.POST["numero_legajo"]
 
         Empleado.objects.create(
-        nombre=nombre_empleado,
-        apellido=apellido_empleado,
-        numero_legajo=numeroLeg_empleado
+        nombre = nombre_empleado,
+        apellido = apellido_empleado,
+        numero_legajo = numeroLeg_empleado
         )
     return render(request,"biblioteca/nuevos_empleados.html")
 
 def listado_empleados(request):
     lista_empleados = Empleado.objects.all()
 
-    context= {
-        "lista_empleados" : lista_empleados
-    }
     return render(
         request,
         "biblioteca/listado_empleados.html",
-        context,
+        {"lista_empleados" : lista_empleados}
     )
 
 def actualizar_datos_empleado(request, empleado_id):
-    empleado= Empleado.objects.get(id=empleado_id)
+    empleado = Empleado.objects.get(id=empleado_id)
 
-    context= {
-        "empleado":empleado
-    }
     if request.POST:
         nombre_empleado = request.POST["nombre"]
         apellido_empleado = request.POST["apellido"]
         numeroLeg_empleado = request.POST["numero_legajo"]
 
-        empleado.nombre= nombre_empleado
-        empleado.apellido= apellido_empleado
-        empleado.numero_legajo= numeroLeg_empleado
+        empleado.nombre = nombre_empleado
+        empleado.apellido = apellido_empleado
+        empleado.numero_legajo = numeroLeg_empleado
 
         empleado.save()
 
     return render(
         request,
-        "biblioteca/actualizar_empleado.html",
-        context
-    )
+        "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
 
 def desactivar_autor(request, id):
     autor= get_object_or_404(Autor, id=id)
@@ -91,5 +75,4 @@ def desactivar_autor(request, id):
         mensaje= "Autor desactivado correctamente"
         
     return render(request, 'desactivar_autor.html', {'mensaje':mensaje})    
-    
     
