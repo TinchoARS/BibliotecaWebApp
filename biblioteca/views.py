@@ -1,14 +1,14 @@
 
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from biblioteca.models import Empleado
 
 # Create your views here.
 def desactivar_empleado(request, id):
-    Empleado = get_object_or_404(Empleado, id=id)
+    empleado = get_object_or_404(Empleado, id=id)
     
-    if Empleado.activo:
-        Empleado.activo = False
-        Empleado.save()
+    if empleado.activo:
+        empleado.activo = False
+        empleado.save()
         mensaje = "Empleado desactivado correctamente"
     else:
         mensaje = "Empleado ya esta desactivado"
@@ -43,21 +43,15 @@ def registrar_empleado(request):
 def listado_empleados(request):
     lista_empleados = Empleado.objects.all()
 
-    context = {
-        "lista_empleados" : lista_empleados
-    }
     return render(
         request,
         "biblioteca/listado_empleados.html",
-        context,
+        {"lista_empleados" : lista_empleados}
     )
 
 def actualizar_datos_empleado(request, empleado_id):
     empleado = Empleado.objects.get(id=empleado_id)
 
-    context = {
-        "empleado":empleado
-    }
     if request.POST:
         nombre_empleado = request.POST["nombre"]
         apellido_empleado = request.POST["apellido"]
@@ -72,5 +66,5 @@ def actualizar_datos_empleado(request, empleado_id):
     return render(
         request,
         "biblioteca/actualizar_empleado.html",
-        context
+        {"empleado" : empleado}
     )
