@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, get_object_or_404
-from biblioteca.models import Empleado
+from biblioteca.models import Empleado, Autor
 
 # Create your views here.
 def desactivar_empleado(request, id):
@@ -68,3 +68,16 @@ def actualizar_datos_empleado(request, empleado_id):
         "biblioteca/actualizar_empleado.html",
         {"empleado" : empleado}
     )
+
+def nuevo_autores(request):
+    if request.POST:
+        nombre_autor = request.POST["nombre"]
+        apellido_autor = request.POST["apellido"]
+        nacionalidad_autor = request.POST["nacionalidad"]
+
+        Autor.objects.create(
+        nombre = nombre_autor,
+        apellido = apellido_autor,
+        nacionalidad = nacionalidad_autor
+        )
+    return render(request,"biblioteca/nuevos_autores.html")
