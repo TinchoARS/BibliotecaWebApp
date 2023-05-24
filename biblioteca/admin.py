@@ -95,7 +95,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Socio,SocioAdmin)
-admin.site.register(Autor,Autoradmin)
+admin.site.register(Autor,AutorAdmin)
 admin.site.register(Libro,LibroAdmin)
 admin.site.register(PrestamoLibro,PrestamoLibroAdmin)
 admin.site.register(Empleado,EmpleadoAdmin)
