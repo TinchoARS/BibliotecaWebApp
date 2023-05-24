@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from biblioteca.models import Empleado, Autor
 
 # Create your views here.
@@ -63,11 +63,17 @@ def actualizar_datos_empleado(request, empleado_id):
 
         empleado.save()
 
-    return render(
-        request,
-        "biblioteca/actualizar_empleado.html",
-        {"empleado" : empleado}
-    )
+    return render(request, "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
+
+def desactivar_autor(request, id):
+    autor = get_object_or_404(Autor, id=id)
+    
+    if autor.activo:
+        autor.activo=False
+        autor.save()
+        mensaje= "Autor desactivado correctamente"
+        
+    return render(request, 'desactivar_autor.html', {'mensaje':mensaje})
 
 def nuevo_autores(request):
     if request.POST:
