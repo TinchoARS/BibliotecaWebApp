@@ -82,3 +82,19 @@ def nuevo_autores(request):
         nacionalidad = nacionalidad_autor
         )
     return render(request,"biblioteca/nuevos_autores.html")
+def actualizar_autores(request,id):
+    autor = get_object_or_404(Autor, id=id)
+
+    if request.method == 'POST':
+        
+        nombre_autor = request.POST.get('nombre')
+        apellido_autor = request.POST.get('apellido')
+        nacionalidad_autor = request.POST.get('nacionalidad')
+
+        autor.nombre = nombre_autor
+        autor.apellido = apellido_autor
+        autor.nacionalidad = nacionalidad_autor
+        autor.save()
+
+    context = {'autor': autor}
+    return render(request, 'actualizar_autor.html', context)
