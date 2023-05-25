@@ -106,6 +106,6 @@ def activar_autor(request, id):
     autor.activo = True
     autor.save()
 
-    mensaje = (request, 'El autor ha sido activado correctamente.')
+    mensaje = ('El autor ha sido activado correctamente.')
 
     return render(request, 'activar_autor.html', {'mensaje':mensaje})
