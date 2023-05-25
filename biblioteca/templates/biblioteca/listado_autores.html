@@ -1,0 +1,38 @@
+<html>
+
+    <head>
+        <title>Lista de Autores</title>
+    </head>
+     
+    <body>
+            <a>
+                Lista de autores
+            </a>
+            <br><br>  
+            <table border="1" width="600">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nacionalidad</th>
+                    <th>Activo</th>
+                </tr>
+
+                {% for autor in lista_autores %}
+
+                    <tr>
+
+                        <td>{{ autor.id }}</td>
+                        <td>{{ autor.nombre }}</td>
+                        <td>{{ autor.apellido }}</td>
+                        <td>{{ autor.nacionalidad }}</td> 
+                        <td>{{ autor.activo }}</td> 
+
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+    </body>
+
+</html>
