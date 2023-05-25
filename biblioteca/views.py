@@ -82,3 +82,8 @@ def nuevo_autores(request):
         nacionalidad = nacionalidad_autor
         )
     return render(request,"biblioteca/nuevos_autores.html")
+
+def listado_autores(request):
+    lista_autores = Autor.objects.all()
+
+    return render(request, "biblioteca/listado_autores.html", {"lista_autores" : lista_autores})
