@@ -109,3 +109,7 @@ def activar_autor(request, id):
     mensaje = ('El autor ha sido activado correctamente.')
 
     return render(request, 'activar_autor.html', {'mensaje':mensaje})
+def listado_autores(request):
+    lista_autores = Autor.objects.all()
+
+    return render(request, "biblioteca/listado_autores.html", {"lista_autores" : lista_autores})
