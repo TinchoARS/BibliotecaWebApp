@@ -83,6 +83,32 @@ def nuevo_autores(request):
         )
     return render(request,"biblioteca/nuevos_autores.html")
 
+def actualizar_autores(request,id):
+    autor = get_object_or_404(Autor, id=id)
+
+    if request.method == 'POST':
+
+        nombre_autor = request.POST.get('nombre')
+        apellido_autor = request.POST.get('apellido')
+        nacionalidad_autor = request.POST.get('nacionalidad')
+
+        autor.nombre = nombre_autor
+        autor.apellido = apellido_autor
+        autor.nacionalidad = nacionalidad_autor
+        autor.save()
+
+    context = {'autor': autor}
+    return render(request, 'actualizar_autor.html', context)
+
+def activar_autor(request, id):
+    autor = get_object_or_404(Autor, id=id)
+
+    autor.activo = True
+    autor.save()
+
+    mensaje = ('El Autor ha sido activado correctamente.')
+
+    return render(request, 'activar_autor.html', {'mensaje':mensaje})
 def listado_autores(request):
     lista_autores = Autor.objects.all()
 
