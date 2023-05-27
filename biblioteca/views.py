@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from biblioteca.models import Empleado, Autor
 
 # Create your views here.
@@ -60,15 +60,11 @@ def actualizar_datos_empleado(request, empleado_id):
 
     return render(request, "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
 
-def desactivar_autor(request, id):
-    autor = get_object_or_404(Autor, id=id)
-    
-    if autor.activo:
-        autor.activo=False
-        autor.save()
-        mensaje= "Autor desactivado correctamente"
-        
-    return render(request, 'desactivar_autor.html', {'mensaje':mensaje})    
+def desactivar_autor(request, autor_id):
+    autor = get_object_or_404(Autor, id=autor_id)
+    autor.activo=False
+    autor.save()
+    return redirect("listado_autores")   
 
 def nuevo_autores(request):
     if request.POST:
@@ -81,10 +77,11 @@ def nuevo_autores(request):
         apellido = apellido_autor,
         nacionalidad = nacionalidad_autor
         )
+        return redirect("listado_autores")
     return render(request,"biblioteca/nuevos_autores.html")
 
-def actualizar_autores(request,id):
-    autor = get_object_or_404(Autor, id=id)
+def actualizar_autores(request, autor_id):
+    autor = get_object_or_404(Autor, id=autor_id)
 
     if request.method == 'POST':
 
@@ -96,19 +93,17 @@ def actualizar_autores(request,id):
         autor.apellido = apellido_autor
         autor.nacionalidad = nacionalidad_autor
         autor.save()
+        return redirect("listado_autores")
 
     context = {'autor': autor}
-    return render(request, 'actualizar_autor.html', context)
+    return render(request, 'biblioteca/actualizar_autor.html', context)
 
-def activar_autor(request, id):
-    autor = get_object_or_404(Autor, id=id)
-
+def activar_autor(request, autor_id):
+    autor = get_object_or_404(Autor, id=autor_id)
     autor.activo = True
     autor.save()
+    return redirect("listado_autores")
 
-    mensaje = ('El Autor ha sido activado correctamente.')
-
-    return render(request, 'activar_autor.html', {'mensaje':mensaje})
 def listado_autores(request):
     lista_autores = Autor.objects.all()
 

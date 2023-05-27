@@ -5,7 +5,11 @@
     </head>
      
     <body>
+        <a href="{% url 'nuevo_autores' %}">
+            Agregar Autor
+        </a>
             <a>
+                <br><br>
                 Lista de autores
             </a>
             <br><br>  
@@ -16,6 +20,7 @@
                     <th>Apellido</th>
                     <th>Nacionalidad</th>
                     <th>Activo</th>
+                    <th>Acciones</th>
                 </tr>
 
                 {% for autor in lista_autores %}
@@ -27,6 +32,22 @@
                         <td>{{ autor.apellido }}</td>
                         <td>{{ autor.nacionalidad }}</td> 
                         <td>{{ autor.activo }}</td> 
+                        <td>
+                            <a href="{% url 'actualizar_autores' autor.id %}">
+                                Modificar
+                            </a>
+                            |
+                            {% if autor.activo %}
+                                <a href="{% url 'desactivar_autor' autor.id %}">
+                                    Desactivar
+                                </a>
+                            {% else %}
+                                <a href="{% url 'activar_autor' autor.id %}">
+                                    Activar
+                                </a>
+                            {% endif %}
+
+                        </td>
 
                     </tr>
 

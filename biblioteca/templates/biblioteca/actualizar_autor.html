@@ -13,6 +13,9 @@
         apellido:<input type="text" name='apellido' value="{{autor.apellido}}">
         nacionalidad:<input type="text" name="nacionalidad" value="{{autor.nacionalidad}}">
         <input type="submit" value="Actualizar">
-    </form>
+    </form><br><br>
+    <a href="{% url 'listado_autores' %}">
+        Ir al listado
+    </a>
 </body>
 </html>

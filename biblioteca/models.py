@@ -7,6 +7,9 @@ class Autor(models.Model):
     nacionalidad = models.CharField(max_length=60)
     activo = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+
 class Libro(models.Model):
     titulo = models.CharField(max_length=30)
     descripcion = models.CharField(max_length=255)
@@ -32,7 +35,7 @@ class Empleado(models.Model):
     activo = models.BooleanField(default=True)
     
     def __str__(self):
-        return f"{self.nombre} {self.apellido}:{self.numero_legajo}"
+        return f"{self.nombre} {self.apellido}: {self.numero_legajo}"
 
 class PrestamoLibro(models.Model):
     fecha_prestamo = models.DateField(default=date.today)
