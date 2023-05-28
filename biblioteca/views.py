@@ -2,17 +2,29 @@ from django.shortcuts import render, get_object_or_404, redirect
 from biblioteca.models import Empleado, Autor
 
 # Create your views here.
+def nuevo_empleado(request):
+    if request.POST:
+        nombre_empleado = request.POST["nombre"]
+        apellido_empleado = request.POST["apellido"]
+        numero_legajo = request.POST["numero_legajo"]
+        
+        Empleado.objects.create(
+        nombre=nombre_empleado,
+        apellido=apellido_empleado,
+        numero_legajo=numero_legajo
+        )
+        return redirect("listado_empleados")
+    return render(request, "biblioteca/nuevo_empleado.html")
+        
 def desactivar_empleado(request, id):
     empleado = get_object_or_404(Empleado, id=id)
     
     if empleado.activo:
         empleado.activo = False
         empleado.save()
-        mensaje = "Empleado desactivado correctamente"
-    else:
-        mensaje = "Empleado ya esta desactivado"
+        
     
-    return render(request, 'desactivar_empleado.html',{'mensaje':mensaje})
+    return redirect("listado_empleados")
 
 def activar_empleado(request, id):
     empleado = get_object_or_404(Empleado, id=id)
@@ -20,11 +32,8 @@ def activar_empleado(request, id):
     if not empleado.activo:
         empleado.activo = True
         empleado.save()
-        mensaje = "Empleado activado correctamente."
-    else:
-        mensaje = "Empleado ya está activo."
 
-    return render(request, 'mensaje_activacion.html', {'mensaje': mensaje})
+    return redirect("listado_empleados")
 
 def registrar_empleado(request):
     if request.POST:

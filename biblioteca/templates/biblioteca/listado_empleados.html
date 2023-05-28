@@ -30,12 +30,30 @@
                         <td>{{ empleado.apellido }}</td>
                         <td>{{ empleado.numero_legajo }}</td> 
                         <td>{{ empleado.activo }}</td> 
+                        <td>
+                            <a href="{% url 'actualizar_empleado' empleado.id %}">
+                                Modificar
+                            </a>
+                            |
+                            {% if empleado.activo %}
+                                <a href="{% url 'desactivar_empleado' empleado.id %}">
+                                    Desactivar
+                                </a>
+                            {% else %}
+                                <a href="{% url 'activar_empleado' empleado.id %}">
+                                    Activar
+                                </a>
+                            {% endif %}
 
+                        </td>
                     </tr>
 
                 {% endfor %}
 
             </table>
+    <a href="{% url 'registrar_empleadox' %}">
+        Agregar empleados
+    </a>
     </body>
 
 </html>
