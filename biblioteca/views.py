@@ -122,3 +122,16 @@ def listado_autores(request):
     lista_autores = Autor.objects.all()
 
     return render(request, "biblioteca/listado_autores.html", {"lista_autores" : lista_autores})
+
+def nuevo_socio(request):
+    if request.POST:
+        nombre_socio = request.POST["nombre"]
+        apellido_socio = request.POST["apellido"]
+        fecha_nacimiento_socio = request.POST["fecha_nacimiento"]
+        
+        Socio.objects.create(
+        nombre = nombre_socio,
+        apellido = apellido_socio,
+        fecha_nacimiento = fecha_nacimiento_socio
+        )
+    return render(request, "biblioteca/nuevos_socios.html")
