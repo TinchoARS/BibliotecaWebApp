@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from biblioteca.models import Empleado, Autor
+from biblioteca.models import Empleado, Autor, Socio
 
 # Create your views here.
 def nuevo_empleado(request):
@@ -135,3 +135,8 @@ def nuevo_socio(request):
         fecha_nacimiento = fecha_nacimiento_socio
         )
     return render(request, "biblioteca/nuevos_socios.html")
+
+def listado_socios(request):
+    lista_socios = Socio.objects.all()
+
+    return render(request, "biblioteca/listado_socios.html", {"lista_socios" : lista_socios})
