@@ -35,6 +35,10 @@
                                 Modificar
                             </a>
                             |
+                            <a href="{% url 'eliminar_empleado' empleado.id %}">
+                                Eliminar
+                            </a>
+                            |
                             {% if empleado.activo %}
                                 <a href="{% url 'desactivar_empleado' empleado.id %}">
                                     Desactivar
@@ -51,7 +55,7 @@
                 {% endfor %}
 
             </table>
-    <a href="{% url 'registrar_empleadox' %}">
+    <a href="{% url 'registrar_empleado' %}">
         Agregar empleados
     </a>
     </body>

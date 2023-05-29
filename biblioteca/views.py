@@ -35,6 +35,11 @@ def activar_empleado(request, id):
 
     return redirect("listado_empleados")
 
+def eliminar_empleado(request, id):
+    empleado = get_object_or_404(Empleado, id=id)
+    empleado.delete()
+    return redirect("listado_empleados")
+
 def registrar_empleado(request):
     if request.POST:
         nombre_empleado = request.POST["nombre"]
