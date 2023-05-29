@@ -18,8 +18,11 @@
         
         <label for="numero_legajo">Número de Legajo:</label>
         <input type="text" id="numero_legajo" name="numero_legajo" value="{{empleado.numero_legajo}}" required>
-        <button type="submit">Registrar</button>
-    </form>
+        <button type="submit" value="Registrar">Registrar</button>
+    </form><br>
+    <a href="{% url 'listado_empleados' %}">
+        Ir al listado empleados
+    </a>
     
 </body>
 </html>
