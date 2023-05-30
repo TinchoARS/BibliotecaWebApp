@@ -146,3 +146,22 @@ def eliminar_prestamo_libro(request, prestamo_id):
     prestamo_libro = get_object_or_404(PrestamoLibro, id=prestamo_id)
     prestamo_libro.delete()
     return HttpResponse ("El registro del prestamo del libro fue eliminado")
+
+def actualizar_datos_socio(request, socio_id):
+
+    socio = get_object_or_404(Socio, id=socio_id)
+
+    if request.method == 'POST':
+
+        nombre_socio = request.POST.get('nombre')
+        apellido_socio = request.POST.get('apellido')
+        fecha_nacimiento_socio = request.POST.get('fecha_nacimiento')
+
+        socio.nombre = nombre_socio
+        socio.apellido = apellido_socio
+        socio.fecha_nacimiento = fecha_nacimiento_socio
+  
+        socio.save()
+        
+    context = {'socio': socio}
+    return render(request, 'biblioteca/actualizar_socio.html', context)
