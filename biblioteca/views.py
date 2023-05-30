@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from biblioteca.models import Empleado, Autor, Socio
+from django.http import HttpResponse
+from biblioteca.models import Empleado, Autor, Socio, PrestamoLibro
 
 # Create your views here.
 def nuevo_empleado(request):
@@ -140,3 +141,8 @@ def listado_socios(request):
     lista_socios = Socio.objects.all()
 
     return render(request, "biblioteca/listado_socios.html", {"lista_socios" : lista_socios})
+
+def eliminar_prestamo_libro(request, prestamo_id):
+    prestamo_libro = get_object_or_404(PrestamoLibro, id=prestamo_id)
+    prestamo_libro.delete()
+    return HttpResponse ("El registro del prestamo del libro fue eliminado")
