@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Lista de Socios</title>
+    </head>
+
+    <body>
+
+        <a>
+            Lista de socios
+        </a>
+        <br><br>
+
+        <table border="1" width="600">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha_nacimiento</th>
+                <th>Activo</th>
+            </tr>
+
+            {% for socio in lista_socios %}
+                <tr>
+
+                    <td>{{ socio.id }}</td>
+                    <td>{{ socio.nombre }}</td>
+                    <td>{{ socio.apellido}} </td>
+                    <td>{{ socio.fecha_nacimiento }}</td>
+                    <td>{{ socio.activo}} </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </body>
+
+</html>
