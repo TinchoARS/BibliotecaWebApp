@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actualizar libro</title>
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+          
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" value="{{ libro.titulo }}" required>
+          
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required>{{ libro.descripcion }}</textarea>
+          
+            <label for="autor">Autor:</label>
+            <select id="autor" name="autor" required>
+              {% for autor in autores_activos %}
+              <option value="{{ autor.id }}">{{ autor.nombre }}</option>
+              {% endfor %}
+            </select>
+          
+            <button type="submit">Actualizar</button>
+          </form>
+    </body>
+</html>      
