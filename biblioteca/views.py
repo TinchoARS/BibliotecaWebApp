@@ -135,7 +135,7 @@ def nuevo_socio(request):
         apellido = apellido_socio,
         fecha_nacimiento = fecha_nacimiento_socio
         )
-    return render(request, "biblioteca/nuevos_socios.html")
+    return render(request, "biblioteca/nuevo_socio.html")
 
 def listado_socios(request):
     lista_socios = Socio.objects.all()
@@ -171,4 +171,26 @@ def activar_libro(request, id):
     libro.save()
 
     return HttpResponse("el libro esta activo")
+def activar_socio(request, id):
+    socio = get_object_or_404(Socio, id=id)
+    socio.activo = True
+    socio.save()
 
+    return HttpResponse("El socio está activo")
+
+def nuevo_libro(request):
+    listado_autores= Autor.objects.all()
+    if request.POST:
+        titulo_libro = request.POST["titulo"]
+        descripcion_libro = request.POST["descripcion"]
+        isbn_libro = request.POST["isbn"]
+        autor_libro=request.POST["autor"]
+                
+        Libro.objects.create(
+        titulo = titulo_libro,
+        descripcion = descripcion_libro,
+        isbn = isbn_libro,
+        autor= Autor.objects.get(id=autor_libro)
+        )
+    context = {'listado_autores':listado_autores}
+    return render(request, "biblioteca/nuevos_libros.html", context)
