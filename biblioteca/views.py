@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from biblioteca.models import Empleado, Autor, Socio, PrestamoLibro , Libro
-
+from datetime import datetime
 # Create your views here.
 def nuevo_empleado(request):
     if request.POST:
@@ -153,15 +153,13 @@ def actualizar_datos_socio(request, socio_id):
     socio = get_object_or_404(Socio, id=socio_id)
 
     if request.method == 'POST':
-
-        nombre_socio = request.POST.get('nombre')
-        apellido_socio = request.POST.get('apellido')
-        fecha_nacimiento_socio = request.POST.get('fecha_nacimiento')
-
+        nombre_socio = request.POST['nombre']
+        apellido_socio = request.POST['apellido']
+        fecha_nacimiento_socio = request.POST['fecha_nacimiento']
         socio.nombre = nombre_socio
         socio.apellido = apellido_socio
-        socio.fecha_nacimiento = fecha_nacimiento_socio
-  
+        fecha_dt = datetime.strptime(fecha_nacimiento_socio,'%Y-%m-%d')
+        socio.fecha_nacimiento= fecha_dt
         socio.save()
         
     context = {'socio': socio}
