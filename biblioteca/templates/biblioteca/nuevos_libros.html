@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar nuevos libros</title>
+</head>
+<body>
+    <form method = "post">
+        {%csrf_token%}
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo" name="titulo" values="{{libro.titulo}}" required>
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" id = "descripcion" name = "descripcion"  value="{{libro.descripcion}}" required>
+        <label for="isbn">Isbn:</label>
+        <input type="number" id="isbn" name="isbn" value="{{libro.isbn}}" required>
+        <label for="autor">Autor:</label>
+        <select name="autor">
+            {% for autor in listado_autores %}
+                {% if autor.activo == True %}
+                    <option value="{{autor.id}}">
+                        {{autor.nombre}} {{autor.apellido}}
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <input type="submit" value="Registrar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method = "post">
+        {%csrf_token%}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" values="{{autor.nombre}}" required>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id = "apellido" name = "apellido"  value="{{autor.apellido}}" required>
+        <label for="nacionalidad">Nacionalidad:</label>
+        <input type="text" id="nacionalidad" name="nacionalidad" value="{{autor.nacionalidad}}" required>
+        <input type="submit" value="Registrar">
+    </form>
+    <br><br>
+    <a href="{% url 'listado_autores' %}">
+        Ir al listado
+    </a>
+</body>
+</html>
