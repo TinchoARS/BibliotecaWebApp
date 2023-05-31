@@ -1,0 +1,42 @@
+<html>
+    <head>
+
+        <title>Actualizar Socio</title>
+
+    </head>
+        
+    <body>
+
+        <h1>Actualizar Socio</h1>
+        <br>
+        
+        <form method="post">
+
+            {% csrf_token %}
+
+            <table border="1">
+
+                <tr>
+                    <th><p style="text-align:left ;">Nombre:</p></th>
+                    <td><input type="text" name="nombre" value="{{socio.nombre}}"></td>
+                </tr>
+                <tr>
+                    <th><p style="text-align:left ;">Apellido:</p></th>
+                    <td><input type="text" name="apellido" value="{{socio.apellido}}"></td>
+                </tr>
+                <tr>
+                    <th><p style="text-align:left ;">Fecha de Nacimiento:</p></th>
+                    <td><input type="date" name="fecha_nacimiento" value='{{socio.fecha_nacimiento|date:"Y-m-d"}}'></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input style=" width: 100%;" type="submit" value="Actualizar Socio" ></td>
+                </tr>          
+                
+            </table>
+
+        </form>    
+
+    </body>
+
+</html>
