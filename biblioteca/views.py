@@ -172,3 +172,8 @@ def activar_libro(request, id):
 
     return HttpResponse("el libro esta activo")
 
+def desactivar_libro(request, id):
+    libro = get_object_or_404(Libro, id=id)
+    libro.activo = False
+    libro.save()
+    return redirect("listado_libros")
