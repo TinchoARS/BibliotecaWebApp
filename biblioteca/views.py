@@ -171,4 +171,10 @@ def activar_libro(request, id):
     libro.save()
 
     return HttpResponse("el libro esta activo")
+def activar_socio(request, id):
+    socio = get_object_or_404(Socio, id=id)
+    socio.activo = True
+    socio.save()
+
+    return HttpResponse("El socio está activo")
 
