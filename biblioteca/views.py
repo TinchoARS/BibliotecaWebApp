@@ -169,6 +169,7 @@ def activar_libro(request, id):
     libro = get_object_or_404(Libro, id=id)
     libro.activo = True
     libro.save()
+    return redirect("listado_libros")
 
     return HttpResponse("el libro esta activo")
 def activar_socio(request, id):
@@ -194,3 +195,35 @@ def nuevo_libro(request):
         )
     context = {'listado_autores':listado_autores}
     return render(request, "biblioteca/nuevos_libros.html", context)
+
+def listado_libros(request):
+    listado_libros = Libro.objects.all()
+    context = {"listado_libros" : listado_libros}
+
+    return render(request, "biblioteca/listado_libros.html", context )
+
+def desactivar_libro(request,id):
+    libro = get_object_or_404(Libro, id=id)
+    libro.activo=False
+    libro.save()
+    return redirect("listado_libros")   
+
+def actualizar_libro(request, id):
+
+    libro = get_object_or_404(Libro, id=id)
+    listado_autores= Autor.objects.all()
+
+    if request.method == 'POST':
+        titulo_libro = request.POST['titulo']
+        descripcion_libro = request.POST['descripcion']
+        isbn_libro = request.POST['isbn']
+        autor_libro= Autor.objects.get(id=request.POST['autor'])
+        libro.titulo = titulo_libro
+        libro.descripcion = descripcion_libro
+        libro.isbn = isbn_libro
+        libro.autor = autor_libro
+
+        libro.save()
+        
+    context = {'libro': libro,'listado_autores' : listado_autores }
+    return render(request, 'biblioteca/actualizar_libro.html', context)

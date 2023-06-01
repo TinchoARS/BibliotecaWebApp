@@ -1,0 +1,67 @@
+<html>
+    <head>
+
+        <title>Actualizar libro</title>
+
+    </head>
+        
+    <body>
+
+        <h1>Actualizar libro</h1>
+        <br>
+        
+        <form method="post">
+
+            {% csrf_token %}
+
+            <table border="1">
+
+                <tr>
+                    <th><p style="text-align:left ;">Título:</p></th>
+                    <td><input type="text" name="titulo" value="{{libro.titulo}}"></td>
+                </tr>
+                <tr>
+                    <th><p style="text-align:left ;">Descripción:</p></th>
+                    <td><input type="text" name="descripcion" value="{{libro.descripcion}}"></td>
+                </tr>
+                <tr>
+                    <th><p style="text-align:left ;">ISBN:</p></th>
+                    <td><input type="text" name="isbn" value="{{libro.isbn}}"></td>
+                </tr>
+                <tr>
+                    <th><p style="text-align:left ;">Autor:</p></th>
+                    <td>
+                        <select name="autor">
+                            {% for autor in listado_autores %}
+                                {% if autor.activo == True %}
+                                {% if autor.id  == libro.autor.id %}
+                                    <option value="{{autor.id}}" selected>
+                                        {{autor.nombre}} {{autor.apellido}}
+                                    </option>
+                                {% else %}
+                                    <option value="{{autor.id}}" >
+                                        {{autor.nombre}} {{autor.apellido}}
+                                    </option>
+                                {% endif %}
+                                {% endif %}
+
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td><input style=" width: 100%;" type="submit" value="Actualizar libro" ></td>
+                </tr>          
+                
+            </table>
+            <a href="{% url 'listado_libros' %}">
+                Volver a listado de libros
+            </a>
+
+        </form>    
+
+    </body>
+
+</html>
