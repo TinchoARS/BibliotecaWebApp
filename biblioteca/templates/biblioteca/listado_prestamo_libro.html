@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for prestamo in prestamos %}
+          {% for prestamo in listado_prestamos %}
           <tr>
             <td>{{ prestamo.id }}</td>
             <td>{{ prestamo.libro }}</td>
@@ -27,9 +27,8 @@
             <td>{{ prestamo.fecha_prestamo }}</td>
             <td>{{ prestamo.fecha_devolucion }}</td>
             <td>
-              <a href="{% url 'nuevo_prestamo' %}">Nuevo</a>
-              <a href="{% url 'modificar_prestamo' prestamo.id %}">Modificar</a>
-              <a href="{% url 'eliminar_prestamo' prestamo.id %}">Eliminar</a>
+              <a href="{% url 'registrar_prestamo' %}">Nuevo</a>
+              
             </td>
           </tr>
           {% endfor %}

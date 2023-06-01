@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar nuevo Prestamo</title>
+</head>
+<body>
+    <form method = "post">
+        {%csrf_token%}
+        <label for="fecha_prestamo">Fecha_prestamo:</label>
+
+        <input type="date" id="fecha_prestamo" name="fecha_prestamo" values="{{prestamolibro.fecha_prestamo|date:"Y-m-d" }}"  required>
+
+        <label for="fecha_devolucion">Fecha_devolucion:</label>
+        <input type="date" id="fecha_devolucion" name="fecha_devolucion" values="{{prestamolibro.fecha_devolucion}}"  required>
+
+        <label for="empleado">Empleado:</label>
+        <select name="empleado">
+        {% for empleado in lista_empleados %}
+            {% if empleado.activo == True %}
+                <option value="{{empleado.id}}">
+                 {{ empleado.nombre }}
+                </option>
+            {% endif %}
+        {% endfor %}
+          </select>
+
+          <label for="socio">socio:</label>
+          <select name="socio">
+            {% for socio in lista_socios %}
+                {% if socio.activo == True %}
+                    <option value="{{socio.id}}">
+                    {{ socio.nombre }}
+                    </option>
+                {% endif %}
+            {% endfor %}
+          </select>
+
+          <label for="libro">libro:</label>
+          <select name="libro">
+            {% for libro in lista_libros %}
+                {% if libro.activo == True %}
+                <option value="{{libro.id}}">
+                    {{ libro.titulo }}
+                </option>
+                {% endif %}            
+            {% endfor %}
+          </select>
+
+        <input type="submit" value="Registrar">
+    </form>
+    <br><br>
+    <a href="{% url 'listado_prestamos' %}">
+        Volver a listado de libros
+    </a>
+</body>
+</html>

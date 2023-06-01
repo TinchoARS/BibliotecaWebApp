@@ -40,8 +40,8 @@ class Empleado(models.Model):
 class PrestamoLibro(models.Model):
     fecha_prestamo = models.DateField(default=date.today)
     fecha_devolucion = models.DateField(default=date.today)
-    socio = models.ForeignKey('Socio', related_name='prestamos', on_delete=models.CASCADE)
-    empleado = models.ForeignKey('Empleado', related_name='prestamos', on_delete=models.CASCADE)
-    libro = models.ForeignKey('Libro', related_name='prestamos', on_delete=models.CASCADE)
+    socio = models.ForeignKey('Socio', related_name='socio', on_delete=models.CASCADE)
+    empleado = models.ForeignKey('Empleado', related_name='empleado', on_delete=models.CASCADE)
+    libro = models.ForeignKey('Libro', related_name='libro', on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.socio.nombre}"
