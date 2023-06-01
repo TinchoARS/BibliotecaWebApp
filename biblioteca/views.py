@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from biblioteca.models import Empleado, Autor, Socio, PrestamoLibro , Libro
-from datetime import datetime
+from datetime import datetime, timedelta
+from templates import nuevos_prestamo_libro
 # Create your views here.
 def nuevo_empleado(request):
     if request.POST:
@@ -234,3 +235,30 @@ def actualizar_libro(request, id):
         
     context = {'libro': libro,'listado_autores' : listado_autores }
     return render(request, 'biblioteca/actualizar_libro.html', context)
+
+def registrar_prestamo(request):
+    if request.method == 'POST':
+        form = nuevos_prestamo_libro(request.POST)
+        if form.is_valid():
+            # Obtener los datos del formulario
+            datos_prestamo = form.cleaned_data
+            fecha_prestamo = datos_prestamo['fecha_prestamo']
+
+            # Calcular la fecha de devolución
+            fecha_devolucion = fecha_prestamo + timedelta(days=2)
+
+            # Crear un nuevo registro de préstamo
+            prestamo = PrestamoLibro(
+                fecha_prestamo = fecha_prestamo,
+                fecha_devolucion = fecha_devolucion,
+                
+            )
+            prestamo.save()
+
+            # Redireccionar a la página de éxito o al listado de préstamos
+            return redirect('listado_libros')
+
+    else:
+        form = nuevos_prestamo_libro()
+
+    return render(request, 'nuevo_prestamo_libro.html', {'form': form})
