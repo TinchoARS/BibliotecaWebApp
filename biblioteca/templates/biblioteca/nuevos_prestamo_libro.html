@@ -13,9 +13,6 @@
 
         <input type="date" id="fecha_prestamo" name="fecha_prestamo" values="{{prestamolibro.fecha_prestamo|date:"Y-m-d" }}"  required>
 
-        <label for="fecha_devolucion">Fecha_devolucion:</label>
-        <input type="date" id="fecha_devolucion" name="fecha_devolucion" values="{{prestamolibro.fecha_devolucion}}"  required>
-
         <label for="empleado">Empleado:</label>
         <select name="empleado">
         {% for empleado in lista_empleados %}
