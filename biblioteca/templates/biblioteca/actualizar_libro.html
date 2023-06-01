@@ -1,37 +1,32 @@
 <html>
     <head>
-
         <title>Actualizar libro</title>
-
-    </head>
-        
+    </head>        
     <body>
-
         <h1>Actualizar libro</h1>
         <br>
-        
+        <a href="{% url 'listado_libros' %}">
+            Volver a listado de libros
+        </a>
+        <br><br>
         <form method="post">
-
             {% csrf_token %}
-            <a href="{% url 'listado_libros' %}">
-                Volver a listado de libros
-            </a>
+            
             <table border="1">
-
                 <tr>
-                    <th><p style="text-align:left ;">Título:</p></th>
-                    <td><input type="text" name="titulo" value="{{libro.titulo}}"></td>
+                    <th>Título:</th>
+                    <td><input type="text" name="titulo" value="{{libro.titulo}}" required></td>
                 </tr>
                 <tr>
-                    <th><p style="text-align:left ;">Descripción:</p></th>
-                    <td><input type="text" name="descripcion" value="{{libro.descripcion}}"></td>
+                    <th>Descripción:</th>
+                    <td><input type="text" name="descripcion" value="{{libro.descripcion}}" required></td>
                 </tr>
                 <tr>
-                    <th><p style="text-align:left ;">ISBN:</p></th>
-                    <td><input type="text" name="isbn" value="{{libro.isbn}}"></td>
+                    <th>ISBN:</th>
+                    <td><input type="number" name="isbn" value="{{libro.isbn}}" required></td>
                 </tr>
                 <tr>
-                    <th><p style="text-align:left ;">Autor:</p></th>
+                    <th>Autor:</th>
                     <td>
                         <select name="autor">
                             {% for autor in listado_autores %}
@@ -50,20 +45,16 @@
                             {% endfor %}
                         </select>
                     </td>
-                </tr>
-                
+                </tr>                
                 <tr>
                     <td></td>
                     <td><input style=" width: 100%;" type="submit" value="Actualizar libro" ></td>
-                </tr>          
-                
+                </tr>            
             </table>
+            <br>
             <a href="{% url 'listado_libros' %}">
                 Volver a listado de libros
             </a>
-
-        </form>    
-
+        </form>
     </body>
-
 </html>
