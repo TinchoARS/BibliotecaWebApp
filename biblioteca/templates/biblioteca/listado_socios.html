@@ -17,6 +17,8 @@
                 <th>Apellido</th>
                 <th>Fecha_nacimiento</th>
                 <th>Activo</th>
+                <th>Opciones</th>
+                
             </tr>
 
             {% for socio in lista_socios %}
@@ -27,7 +29,16 @@
                     <td>{{ socio.apellido}} </td>
                     <td>{{ socio.fecha_nacimiento }}</td>
                     <td>{{ socio.activo}} </td>
-
+                    <td>
+                        <a href="{% url 'nuevo_socio'%}">Nuevo</a>
+                        <a href="{% url 'actualizar_datos_socio' socio.id %}">Modificar</a>
+                        
+                        {% if socio.activo %}
+                            <a href="{% url 'desactivar_socio' socio.id %}">Desactivar</a>
+                        {% else %}
+                            <a href="{% url 'activar_socio' socio.id %}">Activar</a>
+                        {% endif %}
+                    </td>
                 </tr>
 
             {% endfor %}
