@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import registrar_empleado, desactivar_empleado, desactivar_autor, activar_empleado, listado_empleados, listado_autores, actualizar_datos_empleado, nuevo_autores, actualizar_autor, activar_autor
+from .views import registrar_empleado, desactivar_empleado, desactivar_autor, activar_empleado, listado_empleados, listado_autores, actualizar_datos_empleado, nuevo_autores, actualizar_autor, activar_autor,desactivar_socio
 
 urlpatterns = [
     path('empleados/registrar',registrar_empleado, name='registrar_empleado'),
@@ -12,5 +12,5 @@ urlpatterns = [
     path('autores/actualizar/<int:id>/', actualizar_autor, name='actualizar_autor'),
     path('autores/activar/<int:id>/', activar_autor, name='activar_autor'),
     path('autores/listado/', listado_autores, name='listado_autores'),
-
+    path('socio/desactivar/<int:id>/', desactivar_socio, name='desactivar_socio'),
 ]

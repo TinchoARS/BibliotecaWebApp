@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404, HttpResponse
-from biblioteca.models import Empleado, Autor
+from biblioteca.models import Empleado, Autor , Socio
 
 # Create your views here.
 def desactivar_empleado(request, id):
@@ -113,3 +113,12 @@ def listado_autores(request):
     lista_autores = Autor.objects.all()
 
     return render(request, "biblioteca/listado_autores.html", {"lista_autores" : lista_autores})
+def desactivar_socio(request, id):
+    socio = get_object_or_404(Socio, id=id)
+    
+    if socio.activo:
+        socio.activo=False
+        socio.save()
+        mensaje= "Socio desactivado correctamente"
+        
+    return render(request, 'desactivar_socio.html', {'mensaje':mensaje})    
