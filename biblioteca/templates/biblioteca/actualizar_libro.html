@@ -13,7 +13,9 @@
         <form method="post">
 
             {% csrf_token %}
-
+            <a href="{% url 'listado_libros' %}">
+                Volver a listado de libros
+            </a>
             <table border="1">
 
                 <tr>

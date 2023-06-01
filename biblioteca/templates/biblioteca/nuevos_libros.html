@@ -7,6 +7,9 @@
     <title>Registrar nuevos libros</title>
 </head>
 <body>
+    <a href="{% url 'listado_libros' %}">
+        Volver a listado de libros
+    </a>
     <form method = "post">
         {%csrf_token%}
         <label for="titulo">Titulo:</label>
@@ -31,4 +34,4 @@
         Volver a listado de libros
     </a>
 </body>
-</html>
+</html>d
