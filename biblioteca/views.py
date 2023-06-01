@@ -172,12 +172,19 @@ def activar_libro(request, id):
     return redirect("listado_libros")
 
     return HttpResponse("el libro esta activo")
+
 def activar_socio(request, id):
     socio = get_object_or_404(Socio, id=id)
     socio.activo = True
     socio.save()
 
     return HttpResponse("El socio está activo")
+
+def desactivar_socio(request, id):
+    socio = get_object_or_404(Socio, id=id)
+    socio.activo=False
+    socio.save()
+    return redirect("listado_socios")   
 
 def nuevo_libro(request):
     listado_autores= Autor.objects.all()
