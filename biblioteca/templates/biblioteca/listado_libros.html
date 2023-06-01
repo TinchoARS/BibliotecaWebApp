@@ -1,0 +1,61 @@
+<html>
+
+    <head>
+        <title>Listado de Libros</title>
+    </head>
+     
+    <body style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+     
+            <h1>
+                Listado de empleados
+            </h1>
+            <br><br>
+            
+            <table border="1" width="70%" style="border-width: 0;" >
+                <tr>
+                    <th> Id </th>
+                    <th> Título </th>
+                    <th> Descripción </th>
+                    <th> ISDN </th>
+                    <th> Activo </th>
+                    <th> Autor </th>
+                    <th> Acción </th>
+                </tr>
+
+                {% for libro in listado_libros %}
+
+                    <tr>
+
+                        <td> {{ libro.id }} </td>
+                        <td> {{ libro.titulo}} </td>
+                        <td> {{ libro.descripcion }} </td>
+                        <td> {{ libro.isbn }} </td>
+                        <td> {{ libro.activo }} </td> 
+                        <td> {{ libro.autor }} </td> 
+                        <td>
+                            <a href="{% url 'actualizar_libro' libro.id %}">
+                                Actualizar
+                            </a>
+                       |
+                            {% if libro.activo %}
+                                <a href="{% url 'desactivar_libro' libro.id %}">
+                                    Desactivar
+                                </a>
+                            {% else %}
+                                <a href="{% url 'activar_libro' libro.id %}">
+                                    Activar
+                                </a>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+    <a href="{% url 'nuevo_libro' %}">
+        Agregar libro
+    </a>
+    </body>
+
+</html>
