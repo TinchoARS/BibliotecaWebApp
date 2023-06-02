@@ -236,7 +236,7 @@ def listado_prestamos(request):
     listado_prestamos = PrestamoLibro.objects.all()
     context = {"listado_prestamos" : listado_prestamos}
 
-    return render(request, "biblioteca/listado_prestamo_libro.html", context )
+    return render(request, "biblioteca/listado_prestamos.html", context )
 
 def registrar_prestamo(request):
     if request.POST:

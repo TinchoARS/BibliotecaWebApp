@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Libro</th>
+            <th>Socio</th>
+            <th>Fecha de préstamo</th>
+            <th>Fecha de devolución</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prestamo in listado_prestamos %}
+          <tr>
+            <td>{{ prestamo.id }}</td>
+            <td>{{ prestamo.libro }}</td>
+            <td>{{ prestamo.socio }}</td>
+            <td>{{ prestamo.fecha_prestamo }}</td>
+            <td>{{ prestamo.fecha_devolucion }}</td>
+            <td>
+              <a href="{% url 'actualizar_prestamo' prestamo.id %}">Actualizar</a>
+              <a href="">Eliminar</a>
+            </td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+      <a href="{% url 'registrar_prestamo' %}">
+        Agregar prestamo
+    </a>
+</body>
+</html>
