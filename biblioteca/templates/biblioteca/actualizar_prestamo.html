@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Actualizar Prestamo</title>
+    </head>        
+    <body>
+        <h1>Actualizar Prestamo</h1>
+        <br>
+        <a href="{% url 'listado_prestamos' %}">
+            Volver a listado de Prestamos
+        </a>
+        <br><br>
+        <form method="post">
+            {% csrf_token %}
+            
+            <table border="1">
+                <tr>
+                    <th>Fecha de Prestamo:</th>
+                    <td><input type="text" name="fecha_prestamo" value="{{prestamo.fecha_prestamo}}" readonly></td>
+                </tr>
+                <tr>
+                    <th>Fecha de Devolución:</th>
+                    <td><input type="text" name="fecha_devolucion" value="{{prestamo.fecha_devolucion}}" readonly></td>
+                </tr>
+                <tr>
+                    <th>Libro:</th>
+                    <td>
+                        <select name="libro">
+                            {% for libro in listado_libros %}
+                                {% if libro.activo == True %}
+                                {% if libro.id  == prestamo.libro.id %}
+                                    <option value="{{libro.id}}" selected>
+                                        {{ libro.titulo }}
+                                    </option>
+                                {% else %}
+                                    <option value="{{libro.id}}" >
+                                        {{ libro.titulo }}
+                                    </option>
+                                {% endif %} 
+                                {% endif %}            
+                            {% endfor %}
+                          </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Socio:</th>
+                    <td>
+                        <select name="socio">
+                            {% for socio in listado_socios %}
+                                {% if socio.activo == True %}
+                                {% if socio.id  == prestamo.socio.id %}
+                                <option value="{{socio.id}}" selected>
+                                    {{ socio.nombre }} {{ socio.apellido }}
+                                </option>
+                                {% else %}
+                                <<option value="{{socio.id}}">
+                                    {{ socio.nombre }} {{ socio.apellido }}
+                                </option>
+                                {% endif %} 
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>    
+                <tr>
+                    <th>Empleado:</th>
+                    <td>
+                        <select name="empleado">
+                            {% for empleado in listado_empleados %}
+                                {% if empleado.activo == True %}
+                                {% if empleado.id  == prestamo.empleado.id %}
+                                <option value="{{empleado.id}}" selected>
+                                    {{ empleado.nombre }} {{ empleado.apellido }}
+                                </option>
+                                {% else %}
+                                <option value="{{empleado.id}}" >
+                                    {{ empleado.nombre }} {{ empleado.apellido }}
+                                </option>
+                                {% endif %} 
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>                 
+                <tr>
+                    <td></td>
+                    <td><input style=" width: 100%;" type="submit" value="Actualizar Prestamo" ></td>
+                </tr>            
+            </table>
+            <br>
+            <a href="{% url 'listado_prestamos' %}">
+                Volver a listado de Prestamos
+            </a>
+        </form>
+    </body>
+</html>
