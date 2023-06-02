@@ -29,4 +29,5 @@ urlpatterns = [
     path('prestamos/listado/',listado_prestamos, name='listado_prestamos'),
     path('prestamos/actualizar/<int:id>',actualizar_prestamo, name='actualizar_prestamo'),
 
+
 ]
