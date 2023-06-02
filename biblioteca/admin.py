@@ -1,5 +1,7 @@
 from django.contrib import admin
-from biblioteca.models import Socio, Autor, Libro, PrestamoLibro, Empleado
+
+from biblioteca.models import Autor, Empleado, Libro, PrestamoLibro, Socio
+
 
 class SocioAdmin(admin.ModelAdmin):
     model= Socio
@@ -13,12 +15,14 @@ class SocioAdmin(admin.ModelAdmin):
     
     search_fields = [
         "nombre",
-        "apellido",
-        
+        "apellido",  
     ]
+    
     list_filter = [
         "activo"
     ]
+    
+    
 class AutorAdmin(admin.ModelAdmin):
     model = Autor
     
@@ -32,14 +36,14 @@ class AutorAdmin(admin.ModelAdmin):
     search_fields = [
         'nombre',
         'apellido',
-        
     ]
 
     list_filter = [
         'activo',
         'nacionalidad',
     ]
-
+    
+    
 class LibroAdmin(admin.ModelAdmin):
     model= Libro
     
@@ -51,12 +55,14 @@ class LibroAdmin(admin.ModelAdmin):
     ]
     
     search_fields = [
-        "titulo",
-        
+        "titulo",  
     ]
+    
     list_filter = [
         "activo"
     ]
+    
+    
 class PrestamoLibroAdmin(admin.ModelAdmin):
     model = PrestamoLibro
 
@@ -67,12 +73,14 @@ class PrestamoLibroAdmin(admin.ModelAdmin):
         "empleado",
         "libro",
     ]
+    
     search_fields = [
         'Socio__nombre',
         'Libro__titulo',
-        'Empleado__nombre'
+        'Empleado__nombre',
     ]
-
+    
+    
 class EmpleadoAdmin(admin.ModelAdmin):
     model = Empleado
     
@@ -82,10 +90,12 @@ class EmpleadoAdmin(admin.ModelAdmin):
         "numero_legajo",
         "activo",
     ]
+    
     list_search = [
         "nombre",
         "apellido",
     ]
+    
     list_filter = [
         "activo"
     ]
@@ -94,8 +104,8 @@ class EmpleadoAdmin(admin.ModelAdmin):
     
     
 
-admin.site.register(Socio,SocioAdmin)
-admin.site.register(Autor,AutorAdmin)
-admin.site.register(Libro,LibroAdmin)
-admin.site.register(PrestamoLibro,PrestamoLibroAdmin)
-admin.site.register(Empleado,EmpleadoAdmin)
+admin.site.register(Socio, SocioAdmin)
+admin.site.register(Autor, AutorAdmin)
+admin.site.register(Libro, LibroAdmin)
+admin.site.register(PrestamoLibro, PrestamoLibroAdmin)
+admin.site.register(Empleado, EmpleadoAdmin)
