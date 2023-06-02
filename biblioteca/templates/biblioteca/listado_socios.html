@@ -30,7 +30,6 @@
                     <td>{{ socio.fecha_nacimiento }}</td>
                     <td>{{ socio.activo}} </td>
                     <td>
-                        <a href="{% url 'nuevo_socio'%}">Nuevo</a>
                         <a href="{% url 'actualizar_datos_socio' socio.id %}">Modificar</a>
                         
                         {% if socio.activo %}
@@ -44,7 +43,9 @@
             {% endfor %}
 
         </table>
-
+        <a href="{% url 'nuevo_socio'%}">
+            Agregar Socio
+        </a>
     </body>
 
 </html>

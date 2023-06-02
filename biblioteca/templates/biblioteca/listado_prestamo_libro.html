@@ -27,13 +27,16 @@
             <td>{{ prestamo.fecha_prestamo }}</td>
             <td>{{ prestamo.fecha_devolucion }}</td>
             <td>
-              <a href="{% url 'registrar_prestamo' %}">Nuevo</a>
               <a href="{% url 'modificar_prestamo' prestamo.id %}">Modificar</a>
               <a href="{% url 'eliminar_prestamo' prestamo.id %}">Eliminar</a>
             </td>
           </tr>
           {% endfor %}
+
         </tbody>
       </table>
+      <a href="{% url 'registrar_prestamo' %}">
+        Agregar prestamo
+    </a>
 </body>
 </html>
