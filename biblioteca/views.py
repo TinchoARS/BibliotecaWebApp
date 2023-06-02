@@ -3,19 +3,6 @@ from django.http import HttpResponse
 from biblioteca.models import Empleado, Autor, Socio, PrestamoLibro , Libro
 from datetime import datetime, timedelta
 # Create your views here.
-def nuevo_empleado(request):
-    if request.POST:
-        nombre_empleado = request.POST["nombre"]
-        apellido_empleado = request.POST["apellido"]
-        numero_legajo = request.POST["numero_legajo"]
-        
-        Empleado.objects.create(
-        nombre=nombre_empleado,
-        apellido=apellido_empleado,
-        numero_legajo=numero_legajo
-        )
-        return redirect("listado_empleados")
-    return render(request, "biblioteca/nuevo_empleado.html")
         
 def desactivar_empleado(request, id):
     empleado = get_object_or_404(Empleado, id=id)
@@ -145,7 +132,8 @@ def listado_socios(request):
 def eliminar_prestamo_libro(request, prestamo_id):
     prestamo_libro = get_object_or_404(PrestamoLibro, id=prestamo_id)
     prestamo_libro.delete()
-    return HttpResponse ("El registro del prestamo del libro fue eliminado")
+    return redirect("listado_prestamos")
+
 
 
 def actualizar_datos_socio(request, socio_id):

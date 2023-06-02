@@ -7,12 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table border="1px">
         <thead>
           <tr>
             <th>ID</th>
             <th>Libro</th>
             <th>Socio</th>
+            <th>Empleado</th>
             <th>Fecha de préstamo</th>
             <th>Fecha de devolución</th>
             <th>Opciones</th>
@@ -24,11 +25,12 @@
             <td>{{ prestamo.id }}</td>
             <td>{{ prestamo.libro }}</td>
             <td>{{ prestamo.socio }}</td>
+            <td>{{ prestamo.empleado }}</td>
             <td>{{ prestamo.fecha_prestamo }}</td>
             <td>{{ prestamo.fecha_devolucion }}</td>
             <td>
               <a href="{% url 'actualizar_prestamo' prestamo.id %}">Actualizar</a>
-              <a href="">Eliminar</a>
+              <a href="{% url 'eliminar_prestamo_libro' prestamo.id %}">Eliminar</a>
             </td>
           </tr>
           {% endfor %}

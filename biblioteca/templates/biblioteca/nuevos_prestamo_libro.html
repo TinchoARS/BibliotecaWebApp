@@ -18,7 +18,7 @@
         {% for empleado in lista_empleados %}
             {% if empleado.activo == True %}
                 <option value="{{empleado.id}}">
-                 {{ empleado.nombre }}
+                 {{ empleado.nombre }} {{ empleado.apellido }}
                 </option>
             {% endif %}
         {% endfor %}
@@ -29,7 +29,7 @@
             {% for socio in lista_socios %}
                 {% if socio.activo == True %}
                     <option value="{{socio.id}}">
-                    {{ socio.nombre }}
+                    {{ socio.nombre }} {{ socio.apellido }}
                     </option>
                 {% endif %}
             {% endfor %}
