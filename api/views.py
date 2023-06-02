@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
 from biblioteca.models import Libro
@@ -11,9 +11,28 @@ def listado_libro(request):
         libro_data = {
             'id': libro.id,
             'titulo': libro.titulo,
-            'autor': libro.autor,
+            'autor': {
+                'nombre': libro.autor.nombre,
+                'apellido': libro.autor.apellido,
+            },
         }
         libros_data.append(libro_data)
+    return JsonResponse(libros_data, safe=False)
 
-   
-    return JsonResponse(libros_data)
+def registro_libro(request, id):
+    libro = get_object_or_404(Libro, id=id)
+
+    autor_data = {
+        'id': libro.autor.id,
+        'nombre': libro.autor.nombre,
+        'apellido': libro.autor.apellido,
+    }
+
+    libro_data = {
+        'id': libro.id,
+        'titulo': libro.titulo,
+        'descripcion': libro.descripcion,
+        'autor': autor_data,
+    }
+
+    return JsonResponse(libro_data)
