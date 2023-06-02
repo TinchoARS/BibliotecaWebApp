@@ -239,7 +239,7 @@ def listado_prestamos(request):
     context = {"listado_prestamos" : listado_prestamos}
 
     return render(request, "biblioteca/listado_prestamo_libro.html", context )
-    
+
 def registrar_prestamo(request):
     if request.POST:
         fecha_Prestamo = datetime.strptime(request.POST["fecha_prestamo"],"%Y-%m-%d").date()
@@ -263,3 +263,24 @@ def registrar_prestamo(request):
     'lista_socios': Socio.objects.all(),
     'lista_libros': Libro.objects.all()
     })
+
+def actualizar_prestamo(request, id):
+    prestamo = get_object_or_404(PrestamoLibro, id=id)
+    listado_empleados= Empleado.objects.all()
+    listado_libros= Libro.objects.all()
+    listado_socios= Socio.objects.all()
+    if request.method == 'POST':
+        empleado_prestamo = Empleado.objects.get(id=request.POST['empleado'])
+        socio_prestamo = Socio.objects.get(id=request.POST['socio'])
+        libro_prestamo = Libro.objects.get(id=request.POST['libro'])
+        prestamo.empleado = empleado_prestamo
+        prestamo.socio = socio_prestamo
+        prestamo.libro = libro_prestamo
+        prestamo.save()
+
+    context = {'prestamo': prestamo,
+            'listado_empleados' : listado_empleados,
+            'listado_libros' : listado_libros,
+            'listado_socios' : listado_socios 
+    }
+    return render(request, 'biblioteca/actualizar_prestamo.html', context)

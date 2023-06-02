@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import registrar_empleado, desactivar_empleado, desactivar_autor, activar_empleado, eliminar_empleado, listado_empleados, listado_autores, actualizar_datos_empleado, nuevo_autores, actualizar_autores, activar_autor, nuevo_socio, listado_socios, eliminar_prestamo_libro , actualizar_datos_socio,activar_libro, activar_socio,desactivar_socio,nuevo_libro, listado_libros, desactivar_libro, actualizar_libro, registrar_prestamo,listado_prestamos
+from .views import registrar_empleado, desactivar_empleado, desactivar_autor, activar_empleado, eliminar_empleado, listado_empleados, listado_autores, actualizar_datos_empleado, nuevo_autores, actualizar_autores, activar_autor, nuevo_socio, listado_socios, eliminar_prestamo_libro , actualizar_datos_socio,activar_libro, activar_socio,desactivar_socio,nuevo_libro, listado_libros, desactivar_libro, actualizar_libro, registrar_prestamo,listado_prestamos, actualizar_prestamo
 
 
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     path('libros/actualizar/<int:id>', actualizar_libro, name='actualizar_libro'),
     path('prestamos/nuevo/', registrar_prestamo, name='registrar_prestamo'),
     path('prestamos/listado/',listado_prestamos, name='listado_prestamos'),
+    path('prestamos/actualizar/<int:id>',actualizar_prestamo, name='actualizar_prestamo'),
 
 ]
