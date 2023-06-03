@@ -3,6 +3,7 @@ from django.http import JsonResponse
 
 from biblioteca.models import Libro
 
+
 def listado_libro(request):
     libros = Libro.objects.all()
 
@@ -19,6 +20,7 @@ def listado_libro(request):
         libros_data.append(libro_data)
     return JsonResponse(libros_data, safe=False)
 
+
 def registro_libro(request, id):
     libro = get_object_or_404(Libro, id=id)
 
@@ -34,5 +36,4 @@ def registro_libro(request, id):
         'descripcion': libro.descripcion,
         'autor': autor_data,
     }
-
     return JsonResponse(libro_data)

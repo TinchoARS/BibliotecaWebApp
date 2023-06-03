@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listado de prestamos</title>
 </head>
 <body>
+    <h1>Listado de prestamos</h1>
     <table border="1px">
-        <thead>
+        <head>
           <tr>
             <th>ID</th>
             <th>Libro</th>
@@ -19,7 +20,7 @@
             <th>Opciones</th>
           </tr>
         </thead>
-        <tbody>
+        <body>
           {% for prestamo in listado_prestamos %}
           <tr>
             <td>{{ prestamo.id }}</td>
@@ -37,6 +38,7 @@
 
         </tbody>
       </table>
+      <br>
       <a href="{% url 'registrar_prestamo' %}">
         Agregar prestamo
     </a>

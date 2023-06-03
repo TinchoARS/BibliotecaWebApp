@@ -7,9 +7,9 @@
      
     <body>
      
-            <a>
+            <h1>
                 Lista de empleados
-            </a>
+            </h1>
             <br><br>
             
             <table border="1" width="600">
@@ -18,8 +18,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Nro de legajo</th>
-                    <th>Activo</th>
-                    <th>Acciones</th>
+                    <th>Opciones</th>
                 </tr>
 
                 {% for empleado in lista_empleados %}
@@ -29,8 +28,7 @@
                         <td>{{ empleado.id }}</td>
                         <td>{{ empleado.nombre }}</td>
                         <td>{{ empleado.apellido }}</td>
-                        <td>{{ empleado.numero_legajo }}</td> 
-                        <td>{{ empleado.activo }}</td> 
+                        <td>{{ empleado.numero_legajo }}</td>  
                         <td>
                             <a href="{% url 'actualizar_empleado' empleado.id %}">
                                 Modificar
@@ -52,6 +50,7 @@
                 {% endfor %}
 
             </table>
+    <br>
     <a href="{% url 'registrar_empleado' %}">
         Agregar empleados
     </a>
