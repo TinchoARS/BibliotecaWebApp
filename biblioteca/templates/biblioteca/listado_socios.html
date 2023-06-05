@@ -5,9 +5,9 @@
 
     <body>
 
-        <a>
+        <h1>
             Lista de socios
-        </a>
+        </h1>
         <br><br>
 
         <table border="1" width="600">
@@ -16,7 +16,6 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Fecha_nacimiento</th>
-                <th>Activo</th>
                 <th>Opciones</th>
                 
             </tr>
@@ -28,7 +27,6 @@
                     <td>{{ socio.nombre }}</td>
                     <td>{{ socio.apellido}} </td>
                     <td>{{ socio.fecha_nacimiento }}</td>
-                    <td>{{ socio.activo}} </td>
                     <td>
                         <a href="{% url 'actualizar_datos_socio' socio.id %}">Modificar</a>
                         
@@ -43,6 +41,7 @@
             {% endfor %}
 
         </table>
+        <br>
         <a href="{% url 'nuevo_socio'%}">
             Agregar Socio
         </a>

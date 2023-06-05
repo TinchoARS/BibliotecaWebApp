@@ -5,13 +5,10 @@
     </head>
      
     <body>
-        <a href="{% url 'nuevo_autores' %}">
-            Agregar Autor
-        </a>
-            <a>
-                <br><br>
-                Lista de autores
-            </a>
+
+        <h1>
+            Listado de Autores
+        </h1>
             <br><br>  
             <table border="1" width="600">
                 <tr>
@@ -19,8 +16,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Nacionalidad</th>
-                    <th>Activo</th>
-                    <th>Acciones</th>
+                    <th>Opciones</th>
                 </tr>
 
                 {% for autor in lista_autores %}
@@ -31,7 +27,6 @@
                         <td>{{ autor.nombre }}</td>
                         <td>{{ autor.apellido }}</td>
                         <td>{{ autor.nacionalidad }}</td> 
-                        <td>{{ autor.activo }}</td> 
                         <td>
                             <a href="{% url 'actualizar_autores' autor.id %}">
                                 Modificar
@@ -54,6 +49,11 @@
                 {% endfor %}
 
             </table>
+            <br>
+            <a href="{% url 'nuevo_autores' %}">
+                Agregar Autor
+            </a>
+             
     </body>
 
 </html>

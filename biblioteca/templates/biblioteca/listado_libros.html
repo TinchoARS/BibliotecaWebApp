@@ -4,31 +4,23 @@
     </head>     
     <body>
         <h1>
-            Listado de Libros
+            Listado de libros
         </h1>
-        <br>
-        <a href="{% url 'nuevo_libro' %}">
-            Agregar libro
-        </a>
         <br><br>
         <table border="1px">
             <tr>
                 <th> Id </th>
                 <th> Título </th>
-                <th> Descripción </th>
                 <th> ISBN </th>
-                <th> Activo </th>
                 <th> Autor </th>
-                <th> Acción </th>
+                <th> Opciones </th>
             </tr>
 
             {% for libro in listado_libros %}
                 <tr>
                     <td> {{ libro.id }} </td>
                     <td> {{ libro.titulo}} </td>
-                    <td> {{ libro.descripcion }} </td>
                     <td> {{ libro.isbn }} </td>
-                    <td> {{ libro.activo }} </td> 
                     <td> {{ libro.autor }} </td> 
                     <td>
                         <a href="{% url 'actualizar_libro' libro.id %}">
