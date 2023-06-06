@@ -6,17 +6,76 @@
         <title>Lista de Empleados</title>
         <style>
             body {
-                background-color: #78af9d; /* Reemplaza este color con el color deseado */
+              background-color: #afacac; /* Color de fondo para el cuerpo del documento */
+              padding: 40px;
             }
-        </style>
+        
+            .content-container {
+              background-color: #fffafa; /* Color de fondo para el contenedor del contenido */
+              padding: 20px;
+              box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+              border-radius: 10px; /* Agregar bordes redondeados */
+              margin-top: 80px; /* Separación del navbar */
+            }
+        
+            .btn-celeste-claro {
+              background-color: #55b0c2; /* Color de fondo para el botón actualizar */
+              color: #ffffff; /* Color del texto del botón actualizar */
+            }
+        
+            .logo-icon {
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              position: relative;
+              margin-right: 10px; /* Espacio entre el logotipo y el texto */
+            }
+        
+            .logo-icon::before,
+            .logo-icon::after {
+              content: "";
+              display: block;
+              position: absolute;
+            }
+        
+            .logo-icon::before {
+              width: 80%;
+              height: 100%;
+              top: 10%;
+              left: 10%;
+              background-color: #138ec7; /* Color del cuerpo del libro */
+            }
+        
+            .logo-icon::after {
+              width: 50%;
+              height: 8px;
+              top: 40%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background-color: #ffffff; /* Color de la parte superior del libro */
+            }
+        
+            .navbar-dark .navbar-brand {
+              color: #ffffff; /* Color del texto del enlace en el navbar */
+            }
+          </style>
     </head>
      
     <body>
-        <div class="container">
-            <h1 class="text-center">Lista de empleados</h1>
-            <br><br>
-            <table class="table table-success table-bordered">
-                <thead>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="/">
+                <span class="logo-icon"></span>
+                Inicio
+              </a>
+            </div>
+          </nav>
+          <div class="container mt-4">
+            <div class="content-container">
+              <h1 class="mt-4">Listado de empleados</h1>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover mt-4 shadow">
+                  <thead class="table-dark">
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
@@ -33,28 +92,22 @@
                             <td>{{ empleado.apellido }}</td>
                             <td>{{ empleado.numero_legajo }}</td>  
                             <td>
-                                <a class="btn btn-primary" href="{% url 'actualizar_empleado' empleado.id %}">
-                                    Modificar
-                                </a>
+                                <a  class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_empleado' empleado.id %}">Modificar</a>
                                 {% if empleado.activo %}
-                                    <a class="btn btn-danger" href="{% url 'desactivar_empleado' empleado.id %}">
-                                        Desactivar
-                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="{% url 'desactivar_empleado' empleado.id %}">Desactivar</a>
                                 {% else %}
-                                    <a class="btn btn-success" href="{% url 'activar_empleado' empleado.id %}">
-                                        Activar
-                                    </a>
+                                    <a class="btn btn-success btn-sm" href="{% url 'activar_empleado' empleado.id %}">Activar</a>
                                 {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
-            </table>
-            <br>
-            <a class="btn btn-primary" href="{% url 'registrar_empleado' %}">
-                Agregar empleados
-            </a>
+                </table>
+              </div>
+              <br>
+              <a href="{% url 'nuevo_libro' %}" class="btn btn-primary">Agregar empleado</a>
         </div>
+          </div>
     </body>
 
 </html>
