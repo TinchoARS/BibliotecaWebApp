@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <title>Listdo de socios</title>
+        <title>Listado de socios</title>
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/propios.css' %}">
     </head>
@@ -18,7 +18,7 @@
         <h1>
         <div class="container mt-4">
             <div class="content-container">
-                <h1 class="mt-4">Listado de empleados</h1>
+                <h1 class="mt-4">Listado de socios</h1>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover mt-4 shadow">
                         <thead class="table-dark">
@@ -55,7 +55,7 @@
                     </table>
                 </div>
                 <br>
-                <a href="{% url 'nuevo_libro' %}" class="btn btn-primary">Agregar empleado</a>
+                <a href="{% url 'nuevo_socio' %}" class="btn btn-primary">Agregar Socio</a>
             </div>
         </div>
     </body>
