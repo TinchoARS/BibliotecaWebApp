@@ -281,4 +281,7 @@ def eliminar_prestamo_libro(request, prestamo_id):
     prestamo_libro = get_object_or_404(PrestamoLibro, id=prestamo_id)
     prestamo_libro.delete()
     return redirect("listado_prestamos")
-    
+
+
+def pagina_principal(request):
+    return render(request, 'biblioteca/pagina_principal.html')

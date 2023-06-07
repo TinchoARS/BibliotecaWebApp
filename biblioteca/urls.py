@@ -24,7 +24,8 @@ from .views import (
     registrar_libro,
     registrar_socio,
     registrar_empleado,
-    registrar_prestamo
+    registrar_prestamo,
+    pagina_principal
 )
 
 
@@ -53,4 +54,5 @@ urlpatterns = [
     path('prestamos/nuevo/', registrar_prestamo, name='registrar_prestamo'),
     path('prestamos/actualizar/<int:id>',actualizar_prestamo, name='actualizar_prestamo'),
     path('prestamos/eliminar/<int:prestamo_id>', eliminar_prestamo_libro, name='eliminar_prestamo_libro'),
+    path('pagina_principal/', pagina_principal, name='pagina_principal')
 ]
