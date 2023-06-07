@@ -1,41 +1,60 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar nuevo Prestamo</title>
+    <title>Registrar nuevos prestamo</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/propios.css' %}">
 </head>
 <body>
-    <form method = "post">
-        {%csrf_token%}
-        <label for="fecha_prestamo">Fecha_prestamo:</label>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+                <span class="logo-icon"></span>
+                Inicio
+            </a>
+        </div>
+    </nav>
+    <div class="container-small mx-auto mt-4"> <!-- Agregado de la clase "container-small" -->
+        <div class="content-container">
+            <h1 class="mt-4">Registrar nuevos empleados</h1>
+            <form method="post">
+                {% csrf_token %}
 
-        <input type="date" id="fecha_prestamo" name="fecha_prestamo" values="{{prestamolibro.fecha_prestamo|date:"Y-m-d" }}"  required>
+                <div class="form-group">
+                    <label for="fecha_prestamo">Fecha Prestamo</label>
+                    <input type="date" id="fecha_prestamo" name="fecha_prestamo" value="{{ prestamolibro.fecha_prestamo|date:"Y-m-d" }}" class="form-control" required>
+                </div>
 
-        <label for="empleado">Empleado:</label>
-        <select name="empleado">
-        {% for empleado in lista_empleados %}
-            {% if empleado.activo == True %}
-                <option value="{{empleado.id}}">
-                 {{ empleado.nombre }} {{ empleado.apellido }}
-                </option>
-            {% endif %}
-        {% endfor %}
-          </select>
-
-          <label for="socio">socio:</label>
-          <select name="socio">
-            {% for socio in lista_socios %}
-                {% if socio.activo == True %}
-                    <option value="{{socio.id}}">
-                    {{ socio.nombre }} {{ socio.apellido }}
-                    </option>
-                {% endif %}
-            {% endfor %}
-          </select>
-
-          <label for="libro">libro:</label>
+                <div class="form-group">
+                    <label for="empleado">Empleado:</label>
+                    <select name="empleado">
+                        {% for empleado in lista_empleados %}
+                            {% if empleado.activo == True %}
+                                <option value="{{empleado.id}}">
+                                 {{ empleado.nombre }} {{ empleado.apellido }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                          </select>                
+                </div>
+                <div class="form-group">
+                    <label for="socio">Socio:</label>
+                    <select name="socio">
+                        {% for socio in lista_socios %}
+                            {% if socio.activo == True %}
+                                <option value="{{socio.id}}">
+                                {{ socio.nombre }} {{ socio.apellido }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                      </select>             
+                    </div>
+                    <div class="form-group">
+                        <label for="libro">Libro:</label>
           <select name="libro">
             {% for libro in lista_libros %}
                 {% if libro.activo == True %}
@@ -45,12 +64,11 @@
                 {% endif %}            
             {% endfor %}
           </select>
-
-        <input type="submit" value="Registrar">
-    </form>
-    <br><br>
-    <a href="{% url 'listado_prestamos' %}">
-        Volver a listado de libros
-    </a>
+                    </div>
+                    <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
+                    <a href="{% url 'listado_prestamos' %}" class="btn btn-primary">Listado de prestamos</a>
+                </form>
+        </div>
+    </div>
 </body>
 </html>
