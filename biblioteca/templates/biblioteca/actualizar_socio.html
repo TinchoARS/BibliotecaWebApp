@@ -21,7 +21,7 @@
     </nav>
     <div class="container-small mx-auto mt-4">
         <div class="content-container">
-            <h1 class="mt-4">Actualizar Socio</h1>
+            <h1 class="mt-4">Actualizar socio</h1>
             <form method="post">
             {% csrf_token %}
 
@@ -37,7 +37,7 @@
                 <label for="fecha_nacimiento">fecha Nacimiento:</label>
                 <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ socio.fecha_nacimiento|date:'Y-m-d' }}" class="form-control" required>
             </div>
-            <button type="submit" value="actualizar_socio" class="btn btn-primary">Actualizar socio</button>
+            <button type="submit" value="actualizar_socio" class="btn btn-success">Actualizar</button>
             <a href="{% url 'listado_socios' %}" class="btn btn-primary">Listado de socios</a>
         </form>
     </div>
