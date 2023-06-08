@@ -1,59 +1,56 @@
+{% load static %}
 <html>
-
     <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/propios.css' %}">
         <title>Lista de Autores</title>
     </head>
      
     <body>
-
-        <h1>
-            Listado de Autores
-        </h1>
-            <br><br>  
-            <table border="1" width="600">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Nacionalidad</th>
-                    <th>Opciones</th>
-                </tr>
-
-                {% for autor in lista_autores %}
-
-                    <tr>
-
-                        <td>{{ autor.id }}</td>
-                        <td>{{ autor.nombre }}</td>
-                        <td>{{ autor.apellido }}</td>
-                        <td>{{ autor.nacionalidad }}</td> 
-                        <td>
-                            <a href="{% url 'actualizar_autores' autor.id %}">
-                                Modificar
-                            </a>
-                            |
-                            {% if autor.activo %}
-                                <a href="{% url 'desactivar_autor' autor.id %}">
-                                    Desactivar
-                                </a>
-                            {% else %}
-                                <a href="{% url 'activar_autor' autor.id %}">
-                                    Activar
-                                </a>
-                            {% endif %}
-
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-
-            </table>
-            <br>
-            <a href="{% url 'nuevo_autores' %}">
-                Agregar Autor
-            </a>
-             
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+                <span class="logo-icon"></span>
+                Inicio
+              </a>
+            </div>
+        </nav>
+        <div class="container mt-4">
+            <div class="content-container">
+                <h1 class="mt-4">Listado de Autores</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover mt-4 shadow">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Nacionalidad</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for autor in lista_autores %}
+                                <tr>
+                                    <td>{{ autor.id }}</td>
+                                    <td>{{ autor.nombre }}</td>
+                                    <td>{{ autor.apellido }}</td>
+                                    <td>{{ autor.nacionalidad }}</td> 
+                                    <td>
+                                        <a class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_autores' autor.id %}"> Modificar</a>
+                                        {% if autor.activo %}
+                                            <a class="btn btn-danger btn-sm" href="{% url 'desactivar_autor' autor.id %}">Desactivar</a>
+                                        {% else %}
+                                            <a class="btn btn-success btn-sm" href="{% url 'activar_autor' autor.id %}">Activar</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            <a href="{% url 'nuevo_autores' %}" class="btn btn-primary">Agregar Autor</a>
+            </div>
+        </div>
     </body>
-
 </html>
