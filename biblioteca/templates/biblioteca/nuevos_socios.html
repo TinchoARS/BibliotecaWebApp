@@ -28,20 +28,15 @@
 
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control"
-                        required>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
                 </div>
-
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}"
-                        class="form-control" required>
+                    <input type="text" id="apellido" name="apellido" class="form-control" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="numero_legajo">Número de Legajo:</label>
-                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}"
-                        class="form-control" required>
+                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
                 </div>
 
                 <button type="submit" value="Registrar" class="btn btn-success">Registrar</button>
