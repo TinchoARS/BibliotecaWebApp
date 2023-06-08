@@ -88,7 +88,7 @@ def listado_empleados(request):
 ```
 ### **Actualizar Empleado:**
 <picture>
-  <img alt="Pantalla para la actulizar empleados" src="Imagenes/actualizarempleados.png">
+  <img alt="Pantalla para la actulizar empleados" src="Imagenes/actualizarempleado.png">
 </picture>
 Esta pantalla permite actualizar el nombre, apellido y nro. de legajo de un empleado seleccionado desde la pantalla 'listado de empleados' 
 
