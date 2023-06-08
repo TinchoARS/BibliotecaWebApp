@@ -1,6 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="{% url 'pagina_principal' %}">
                 <span class="logo-icon"></span>
                 Inicio
             </a>
@@ -25,20 +24,20 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" value="{{ empleado.nombre }}" class="form-control">
+                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" value="{{ empleado.apellido }}" class="form-control">
+                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="numero_legajo">Número de Legajo:</label>
-                    <input type="text" name="numero_legajo" value="{{ empleado.numero_legajo }}" class="form-control">
+                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}" class="form-control" required>
                 </div>
-                <input type="submit" value="Actualizar" class="btn btn-primary">
+                <button type="submit" value="Actualizar" class="btn btn-primary">Actualizar</button>
             </form>
             <br>
-            <a href="{% url 'listado_empleados' %}">
+            <a href="{% url 'listado_empleados' %}" class="btn btn-primary">
                 Ir al listado de empleados
             </a>
         </div>
