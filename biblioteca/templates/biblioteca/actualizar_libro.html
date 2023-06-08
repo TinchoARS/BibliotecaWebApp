@@ -22,7 +22,7 @@
     </nav>
     <div class="container-small mx-auto mt-4">
         <div class="content-container">
-            <h1 class="mt-4">Actualizar Libro</h1>
+            <h1 class="mt-4">Actualizar libro</h1>
             <form method="post">
                 {% csrf_token %}
 
@@ -55,8 +55,8 @@
                         {% endif %} {% endif %} {% endfor %}
                     </select>
                 </div>
-                <button type="submit" value="actualizar_libro" class="btn btn-primary">
-                    Actualizar libro
+                <button type="submit" value="actualizar_libro" class="btn btn-success">
+                    Actualizar
                 </button>
                 <a href="{% url 'listado_libros' %}" class="btn btn-primary">Listado de libros</a>
             </form>
