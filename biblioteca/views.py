@@ -128,7 +128,7 @@ def registrar_socio(request):
         apellido=apellido_socio,
         fecha_nacimiento=fecha_nacimiento_socio
         )
-    return render(request, "biblioteca/nuevo_socios.html")
+    return render(request, "biblioteca/nuevos_socios.html")
 
 
 def actualizar_socio(request, socio_id):
