@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/propios.css' %}">
@@ -9,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar los datos de un Autor</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
@@ -25,15 +27,18 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Nombre:</label>
-                    <input type="text" class="form-control" id="name" name="nombre" value="{{ autor.nombre }}" placeholder="Ingrese el nuevo nombre" required>
+                    <input type="text" class="form-control" id="name" name="nombre" value="{{ autor.nombre }}"
+                        placeholder="Ingrese el nuevo nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" name='apellido' value="{{ autor.apellido }}" placeholder="Ingrese el nuevo apellido" required>
+                    <input type="text" class="form-control" id="apellido" name='apellido' value="{{ autor.apellido }}"
+                        placeholder="Ingrese el nuevo apellido" required>
                 </div>
                 <div class="form-group">
                     <label for="nacionalidad">Nacionalidad:</label>
-                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="{{ autor.nacionalidad }}" placeholder="Ingrese la nueva nacionalidad" required>
+                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad"
+                        value="{{ autor.nacionalidad }}" placeholder="Ingrese la nueva nacionalidad" required>
                 </div>
                 <button type="submit" class="btn btn-primary" value="Actualizar"> Actualizar</button>
             </form><br>
@@ -43,5 +48,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>

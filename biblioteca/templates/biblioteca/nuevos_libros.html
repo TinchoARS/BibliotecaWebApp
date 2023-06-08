@@ -1,10 +1,13 @@
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <title>Registrar Nuevo Libros</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/propios.css' %}">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
@@ -14,36 +17,37 @@
             </a>
         </div>
     </nav>
-    <div class="container-small mx-auto mt-4"> <!-- Agregado de la clase "container-small" -->
+    <div class="container-small mx-auto mt-4">
+        <!-- Agregado de la clase "container-small" -->
         <div class="content-container">
             <h1 class="mt-4">Registrar nuevos libros</h1>
-            <form method = "post">
+            <form method="post">
                 {%csrf_token%}
-        
+
                 <div class="form-group">
                     <label for="titulo">Título:</label>
                     <input type="text" id="titulo" name="titulo" class="form-control" required>
                 </div>
-        
+
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" id = "descripcion" name = "descripcion" class="form-control" required >
+                    <input type="text" id="descripcion" name="descripcion" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label for="isbn">ISBN:</label>
                     <input type="number" id="isbn" name="isbn" class="form-control" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="autor">Autor:</label>
                     <select name="autor" style="width:120;">
                         {% for autor in listado_autores %}
-                            {% if autor.activo == True %}
-                                <option value="{{autor.id}}">
-                                    {{autor.nombre}} {{autor.apellido}}
-                                </option>
-                            {% endif %}
+                        {% if autor.activo == True %}
+                        <option value="{{autor.id}}">
+                            {{autor.nombre}} {{autor.apellido}}
+                        </option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                 </div>
@@ -51,9 +55,9 @@
                 <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
 
                 <a href="{% url 'listado_libros' %}" class="btn btn-primary">Listado de libros</a>
-            </form>              
+            </form>
         </div>
-    </div> 
+    </div>
 </body>
 
 </html>

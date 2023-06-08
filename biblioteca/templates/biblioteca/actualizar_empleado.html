@@ -1,5 +1,7 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/propios.css' %}">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
@@ -24,15 +27,18 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control" required>
+                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}" class="form-control" required>
+                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}"
+                        class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="numero_legajo">Número de Legajo:</label>
-                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}" class="form-control" required>
+                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}"
+                        class="form-control" required>
                 </div>
                 <button type="submit" value="Actualizar" class="btn btn-primary">Actualizar</button>
             </form>
@@ -43,4 +49,5 @@
         </div>
     </div>
 </body>
+
 </html>

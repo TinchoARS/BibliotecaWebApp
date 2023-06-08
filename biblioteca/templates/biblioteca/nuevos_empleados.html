@@ -1,4 +1,5 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,7 +20,8 @@
             </a>
         </div>
     </nav>
-    <div class="container-small mx-auto mt-4"> <!-- Agregado de la clase "container-small" -->
+    <div class="container-small mx-auto mt-4">
+        <!-- Agregado de la clase "container-small" -->
         <div class="content-container">
             <h1 class="mt-4">Registrar nuevos empleados</h1>
             <form method="post">
@@ -27,17 +29,20 @@
 
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control" required>
+                    <input type="text" id="nombre" name="nombre" value="{{ empleado.nombre }}" class="form-control"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}" class="form-control" required>
+                    <input type="text" id="apellido" name="apellido" value="{{ empleado.apellido }}"
+                        class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label for="numero_legajo">Número de Legajo:</label>
-                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}" class="form-control" required>
+                    <input type="text" id="numero_legajo" name="numero_legajo" value="{{ empleado.numero_legajo }}"
+                        class="form-control" required>
                 </div>
 
                 <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
@@ -49,15 +54,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
