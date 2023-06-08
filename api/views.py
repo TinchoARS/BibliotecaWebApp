@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
-from biblioteca.models import Libro
+from biblioteca.models import Empleado, Libro
 
 
 def listado_libro(request):
@@ -37,3 +37,18 @@ def registro_libro(request, id):
         'autor': autor_data,
     }
     return JsonResponse(libro_data)
+
+
+def listado_empleado(request):
+    empleados = Empleado.objects.all()
+
+    empleados_data = []
+    for empleado in empleados:
+        empleado_data = {
+            'id': empleado.id,
+            'nombre': empleado.nombre,
+            'apellido': empleado.apellido,
+            'numero_legajo': empleado.numero_legajo,
+        }
+        empleados_data.append(empleado_data)
+    return JsonResponse(empleados_data, safe=False)
