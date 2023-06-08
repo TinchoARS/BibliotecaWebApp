@@ -36,7 +36,7 @@ Home Page"
 ### **Listar Empleados:**
 
 <picture>
-  <img alt="Pantalla para el listado de empleados" src="/webapp/imagenes/listarempleados.png">
+  <img alt="Pantalla para el listado de empleados" src="imagenes/listarempleados.png">
 </picture>
 
 [Acceso:](http://localhost:8000/biblioteca/empleados/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/empleados/listado , desde el formulario "Listado de Empleados" o desde el la "
