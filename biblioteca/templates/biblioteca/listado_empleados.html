@@ -39,7 +39,7 @@
                             <td>{{ empleado.apellido }}</td>
                             <td>{{ empleado.numero_legajo }}</td>  
                             <td>
-                                <a  class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_empleado' empleado.id %}">Modificar</a>
+                                <a  class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_empleado' empleado.id %}">Actualizar</a>
                                 {% if empleado.activo %}
                                     <a class="btn btn-danger btn-sm" href="{% url 'desactivar_empleado' empleado.id %}">Desactivar</a>
                                 {% else %}

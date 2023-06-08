@@ -39,7 +39,7 @@
                                     <td>{{ autor.apellido }}</td>
                                     <td>{{ autor.nacionalidad }}</td> 
                                     <td>
-                                        <a class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_autores' autor.id %}"> Modificar</a>
+                                        <a class="btn btn-celeste-claro btn-sm" href="{% url 'actualizar_autores' autor.id %}"> Actualizar</a>
                                         {% if autor.activo %}
                                             <a class="btn btn-danger btn-sm" href="{% url 'desactivar_autor' autor.id %}">Desactivar</a>
                                         {% else %}
