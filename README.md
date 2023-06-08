@@ -26,14 +26,14 @@ Este módulo permite resgistrar, modificar, elimanar lógicamente y mostrar a to
 
 ### **Registar Empleado:**
 
-  ![registrar_empleado](imagenes/registrarempleado.png)
+  ![registrar_empleado](Imagenes/registrarempleado.png)
 
 [Acceso:](http://localhost:8000/biblioteca/empleados/nuevo) puede acceder al formulario desde la url http://localhost:8000/biblioteca/empleados/nuevo , desde el formulario "Listado de Empleados" o desde el la "
 Home Page"
 
 ### **Listar Empleados:**
 
-![listarempleados](imagenes/listarempleados.png)
+![listarempleados](Imagenes/listarempleados.png)
 
 [Acceso:](http://localhost:8000/biblioteca/empleados/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/empleados/listado , desde el formulario "Listado de Empleados" o desde el la "
 Home Page"
