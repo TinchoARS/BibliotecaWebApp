@@ -1,5 +1,7 @@
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +27,9 @@
             </a>
         </div>
     </nav>
-    <div class="container-small mx-auto mt-4">
+    <div class="container-sm mx-auto mt-4" style="width:40%">
         <div class="content-container">
-            <h1 class="mt-4">Actualizar Prestamo</h1>
+            <h1 class="mt-4">Actualizar prestamo</h1>
             <form method="post">
                 {% csrf_token %}
 
@@ -93,8 +95,8 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Actualizar Prestamo</button>
-                <a href="{% url 'listado_prestamos' %}" class="btn btn-primary">Volver a listado de Prestamos</a>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+                <a href="{% url 'listado_prestamos' %}" class="btn btn-primary">Listado de prestamos</a>
             </form>
         </div>
     </div>

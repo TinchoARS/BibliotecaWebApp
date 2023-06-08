@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/propios.css' %}">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
@@ -18,7 +20,8 @@
             </a>
         </div>
     </nav>
-    <div class="container-small mx-auto mt-4"> <!-- Agregado de la clase "container-small" -->
+    <div class="container-small mx-auto mt-4">
+        <!-- Agregado de la clase "container-small" -->
         <div class="content-container">
             <h1 class="mt-4">Registrar nuevos empleados</h1>
             <form method="post">
@@ -26,49 +29,51 @@
 
                 <div class="form-group">
                     <label for="fecha_prestamo">Fecha Prestamo</label>
-                    <input type="date" id="fecha_prestamo" name="fecha_prestamo" value="{{ prestamolibro.fecha_prestamo|date:"Y-m-d" }}" class="form-control" required>
+                    <input type="date" id="fecha_prestamo" name="fecha_prestamo"
+                        value="{{ prestamolibro.fecha_prestamo|date:" Y-m-d" }}" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label for="empleado">Empleado:</label>
                     <select name="empleado">
                         {% for empleado in lista_empleados %}
-                            {% if empleado.activo == True %}
-                                <option value="{{empleado.id}}">
-                                 {{ empleado.nombre }} {{ empleado.apellido }}
-                                </option>
-                            {% endif %}
+                        {% if empleado.activo == True %}
+                        <option value="{{empleado.id}}">
+                            {{ empleado.nombre }} {{ empleado.apellido }}
+                        </option>
+                        {% endif %}
                         {% endfor %}
-                          </select>                
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="socio">Socio:</label>
                     <select name="socio">
                         {% for socio in lista_socios %}
-                            {% if socio.activo == True %}
-                                <option value="{{socio.id}}">
-                                {{ socio.nombre }} {{ socio.apellido }}
-                                </option>
-                            {% endif %}
+                        {% if socio.activo == True %}
+                        <option value="{{socio.id}}">
+                            {{ socio.nombre }} {{ socio.apellido }}
+                        </option>
+                        {% endif %}
                         {% endfor %}
-                      </select>             
-                    </div>
-                    <div class="form-group">
-                        <label for="libro">Libro:</label>
-          <select name="libro">
-            {% for libro in lista_libros %}
-                {% if libro.activo == True %}
-                <option value="{{libro.id}}">
-                    {{ libro.titulo }}
-                </option>
-                {% endif %}            
-            {% endfor %}
-          </select>
-                    </div>
-                    <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
-                    <a href="{% url 'listado_prestamos' %}" class="btn btn-primary">Listado de prestamos</a>
-                </form>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="libro">Libro:</label>
+                    <select name="libro">
+                        {% for libro in lista_libros %}
+                        {% if libro.activo == True %}
+                        <option value="{{libro.id}}">
+                            {{ libro.titulo }}
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
+                <a href="{% url 'listado_prestamos' %}" class="btn btn-primary">Listado de prestamos</a>
+            </form>
         </div>
     </div>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/propios.css' %}">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
@@ -18,23 +20,27 @@
             </a>
         </div>
     </nav>
-    <div class="container-small mx-auto mt-4"> <!-- Agregado de la clase "container-small" -->
+    <div class="container-small mx-auto mt-4">
+        <!-- Agregado de la clase "container-small" -->
         <div class="content-container">
             <h1 class="mt-4">Registrar nuevos autores</h1>
             <form method="post">
                 {% csrf_token %}
-            
+
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" values="{{autor.nombre}}" required>
+                    <input type="text" class="form-control" id="nombre" name="nombre" values="{{autor.nombre}}"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id = "apellido" name = "apellido"  value="{{autor.apellido}}" required>
+                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{autor.apellido}}"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="nacionalidad">Nacionalidad:</label>
-                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="{{autor.nacionalidad}}" required>
+                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad"
+                        value="{{autor.nacionalidad}}" required>
                 </div>
                 <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
                 <a class="btn btn-primary" href="{% url 'listado_autores' %}">
@@ -43,7 +49,8 @@
             </form>
         </div>
     </div>
-    
-    
+
+
 </body>
+
 </html>

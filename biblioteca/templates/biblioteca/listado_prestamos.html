@@ -48,7 +48,8 @@
               <td>{{ prestamo.fecha_prestamo }}</td>
               <td>{{ prestamo.fecha_devolucion }}</td>
               <td>
-                <a href="{% url 'actualizar_prestamo' prestamo.id %}" class="btn btn-celeste-claro btn-sm">Actualizar</a>
+                <a href="{% url 'actualizar_prestamo' prestamo.id %}"
+                  class="btn btn-celeste-claro btn-sm">Actualizar</a>
                 <a href="{% url 'eliminar_prestamo_libro' prestamo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
               </td>
             </tr>
@@ -57,7 +58,7 @@
         </table>
       </div>
       <br>
-      <a href="{% url 'registrar_prestamo' %}" class="btn btn-success">Agregar préstamo</a>
+      <a href="{% url 'registrar_prestamo' %}" class="btn btn-primary">Agregar préstamo</a>
     </div>
   </div>
 

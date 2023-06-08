@@ -1,63 +1,67 @@
 {% load static %}
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Actualizar Libro</title>
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/propios.css' %}">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'pagina_principal' %}">
-                    <span class="logo-icon"></span>
-                    Inicio
-                </a>
-            </div>
-        </nav>
-        <div class="container-small mx-auto mt-4">
-            <div class="content-container">
-                <h1 class="mt-4">Actualizar Libro</h1>
-                <form method="post">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualizar Libro</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/propios.css' %}" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+                <span class="logo-icon"></span>
+                Inicio
+            </a>
+        </div>
+    </nav>
+    <div class="container-small mx-auto mt-4">
+        <div class="content-container">
+            <h1 class="mt-4">Actualizar libro</h1>
+            <form method="post">
                 {% csrf_token %}
-    
+
                 <div class="form-group">
                     <label for="titulo">Titulo:</label>
-                    <input type="text" id="titulo" name="titulo" value="{{ libro.titulo }}" class="form-control" required>
+                    <input type="text" id="titulo" name="titulo" value="{{ libro.titulo }}" class="form-control"
+                        required />
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripcion:</label>
-                    <input type="text" id="descripcion" name="descripcion" value="{{ libro.descripcion }}" class="form-control" required>
+                    <input type="text" id="descripcion" name="descripcion" value="{{ libro.descripcion }}"
+                        class="form-control" required />
                 </div>
                 <div class="form-group">
                     <label for="isbn">ISBN:</label>
-                    <input type="number" id="isbn" name="isbn" value="{{ libro.isbn }}" class="form-control" required>
+                    <input type="number" id="isbn" name="isbn" value="{{ libro.isbn }}" class="form-control" required />
                 </div>
                 <div class="form-group">
                     <label for="autor">Autor:</label>
                     <select name="autor">
-                        {% for autor in listado_autores %}
-                            {% if autor.activo == True %}
-                            {% if autor.id  == libro.autor.id %}
-                                <option value="{{autor.id}}" selected>
-                                    {{autor.nombre}} {{autor.apellido}}
-                                </option>
-                            {% else %}
-                                <option value="{{autor.id}}" >
-                                    {{autor.nombre}} {{autor.apellido}}
-                                </option>
-                            {% endif %}
-                            {% endif %}
-
-                        {% endfor %}
+                        {% for autor in listado_autores %} {% if autor.activo == True %}
+                        {% if autor.id == libro.autor.id %}
+                        <option value="{{autor.id}}" selected>
+                            {{autor.nombre}} {{autor.apellido}}
+                        </option>
+                        {% else %}
+                        <option value="{{autor.id}}">
+                            {{autor.nombre}} {{autor.apellido}}
+                        </option>
+                        {% endif %} {% endif %} {% endfor %}
                     </select>
                 </div>
-                <button type="submit" value="actualizar_libro" class="btn btn-primary">Actualizar libro</button>
+                <button type="submit" value="actualizar_libro" class="btn btn-success">
+                    Actualizar
+                </button>
                 <a href="{% url 'listado_libros' %}" class="btn btn-primary">Listado de libros</a>
             </form>
         </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
