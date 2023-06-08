@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <label for="autor">Autor:</label>
-                    <select name="autor" style="width:120;">
+                    <select class="form-select form-select-lg mb-3" name="autor" style="width:120;">
                         {% for autor in listado_autores %}
                         {% if autor.activo == True %}
                         <option value="{{autor.id}}">

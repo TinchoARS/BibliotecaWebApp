@@ -28,13 +28,12 @@
 
                 <div class="form-group">
                     <label for="fecha_prestamo">Fecha Prestamo</label>
-                    <input type="date" id="fecha_prestamo" name="fecha_prestamo"
-                        value="{{ prestamolibro.fecha_prestamo|date:" Y-m-d" }}" class="form-control" required>
+                    <input type="date" id="fecha_prestamo" name="fecha_prestamo" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label for="empleado">Empleado:</label>
-                    <select name="empleado">
+                    <select class="form-select form-select-lg mb-3" name="empleado">
                         {% for empleado in lista_empleados %}
                         {% if empleado.activo == True %}
                         <option value="{{empleado.id}}">
@@ -46,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label for="socio">Socio:</label>
-                    <select name="socio">
+                    <select class="form-select form-select-lg mb-3" name="socio">
                         {% for socio in lista_socios %}
                         {% if socio.activo == True %}
                         <option value="{{socio.id}}">
@@ -58,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     <label for="libro">Libro:</label>
-                    <select name="libro">
+                    <select class="form-select form-select-lg mb-3" name="libro">
                         {% for libro in lista_libros %}
                         {% if libro.activo == True %}
                         <option value="{{libro.id}}">
