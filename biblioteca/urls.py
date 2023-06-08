@@ -31,15 +31,15 @@ from .views import (
 
 urlpatterns = [
     path('empleados/listado/', listado_empleados, name='listado_empleados'),
-    path('empleados/nuevo',registrar_empleado, name='registrar_empleado'),
+    path('empleados/nuevo/',registrar_empleado, name='registrar_empleado'),
     path('empleados/actualizar/<int:empleado_id>', actualizar_empleado, name='actualizar_empleado'),
     path('empleados/desactivar/<int:id>', desactivar_empleado, name='desactivar_empleado'),
     path('empleados/activar/<int:id>', activar_empleado, name='activar_empleado'),
     path('autores/listado/', listado_autores, name='listado_autores'),
     path('autores/nuevo/', registrar_autores, name='nuevo_autores'),
-    path('autores/actualizar/<int:autor_id>/', actualizar_autor, name='actualizar_autores'),
+    path('autores/actualizar/<int:autor_id>', actualizar_autor, name='actualizar_autores'),
     path('autores/desactivar/<int:autor_id>', desactivar_autor, name='desactivar_autor'),
-    path('autores/activar/<int:autor_id>/', activar_autor, name='activar_autor'),
+    path('autores/activar/<int:autor_id>', activar_autor, name='activar_autor'),
     path('socios/listado/', listado_socios, name='listado_socios'),
     path('socios/nuevo/', registrar_socio, name='nuevo_socio'),
     path('socios/actualizar/<int:socio_id>',actualizar_socio,name='actualizar_datos_socio'),
