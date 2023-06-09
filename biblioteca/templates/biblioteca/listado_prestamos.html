@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enlace al archivo CSS de Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/propios.css' %}">
+  <title>Listado de préstamos</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+        <span class="logo-icon"></span>
+        Inicio
+      </a>
+    </div>
+  </nav>
+
+  <div class="container ">
+    <div class="content-container">
+      <h1 class="mt-4">Listado de préstamos</h1>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover mt-4 shadow">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Libro</th>
+              <th>Socio</th>
+              <th>Empleado</th>
+              <th>Fecha de préstamo</th>
+              <th>Fecha de devolución</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for prestamo in listado_prestamos %}
+            <tr>
+              <td>{{ prestamo.id }}</td>
+              <td>{{ prestamo.libro }}</td>
+              <td>{{ prestamo.socio }}</td>
+              <td>{{ prestamo.empleado }}</td>
+              <td>{{ prestamo.fecha_prestamo }}</td>
+              <td>{{ prestamo.fecha_devolucion }}</td>
+              <td>
+                <a href="{% url 'actualizar_prestamo' prestamo.id %}"
+                  class="btn btn-celeste-claro btn-sm">Actualizar</a>
+                <a href="{% url 'eliminar_prestamo_libro' prestamo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <a href="{% url 'registrar_prestamo' %}" class="btn btn-primary">Agregar préstamo</a>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

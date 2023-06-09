@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/propios.css' %}">
+    <title>Registrar socio</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+                <span class="logo-icon"></span>
+                Inicio
+            </a>
+        </div>
+    </nav>
+    <div class="container-small mx-auto mt-4">
+        <div class="content-container">
+            <h1 class="mt-4">Registrar socio</h1>
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
+                </div>
+
+                <button type="submit" value="Registrar" class="btn btn-success">Registrar</button>
+
+                <a href="{% url 'listado_socios' %}" class="btn btn-primary">Listado de socios</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

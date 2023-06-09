@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Enlace al archivo CSS de Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/propios.css' %}">
+  <title>Listado de libros</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'pagina_principal' %}">
+        <span class="logo-icon"></span>
+        Inicio
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="content-container">
+      <h1 class="mt-4">Listado de libros</h1>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover mt-4 shadow">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>ISBN</th>
+              <th>Autor</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for libro in listado_libros %}
+            <tr>
+              <td>{{ libro.id }}</td>
+              <td>{{ libro.titulo }}</td>
+              <td>{{ libro.isbn }}</td>
+              <td>{{ libro.autor }}</td>
+              <td>
+                <a href="{% url 'actualizar_libro' libro.id %}" class="btn btn-celeste-claro btn-sm">Actualizar</a>
+                {% if libro.activo %}
+                <a href="{% url 'desactivar_libro' libro.id %}" class="btn btn-danger btn-sm">Desactivar</a>
+                {% else %}
+                <a href="{% url 'activar_libro' libro.id %}" class="btn btn-success btn-sm">Activar</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <a href="{% url 'nuevo_libro' %}" class="btn btn-primary">Agregar libro</a>
+    </div>
+  </div>
+
+</body>
+
+</html>
