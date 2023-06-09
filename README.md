@@ -72,6 +72,7 @@ Vista:
 <picture>
   <img alt="Pantalla para listar empleados" src="Imagenes/listarempleados.png">
 </picture>
+
 Esta pantalla permite listar a todos los empleado, tanto activos como inactivos de la biblioteca y poder gestionar la actualización de sus datos, activar o desartivar su estado y/o agregar un nuevo empleado.
 
 [Acceso:](http://localhost:8000/biblioteca/empleados/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/empleados/listado , desde el formulario "Listado de Empleados" o desde la ["
@@ -90,6 +91,7 @@ def listado_empleados(request):
 <picture>
   <img alt="Pantalla para la actulizar empleados" src="Imagenes/actualizarempleado.png">
 </picture>
+
 Esta pantalla permite actualizar el nombre, apellido y nro. de legajo de un empleado seleccionado desde la pantalla 'listado de empleados' 
 
 Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/empleados/listado , haciendo clic sobre el botón 'Actualizar'
@@ -140,6 +142,7 @@ class PrestamoLibro(models.Model):
 <picture>
   <img alt="Pantalla para registrar un prestamo" src="Imagenes/registrarprestamo.PNG">
 </picture>
+
 Esta pantalla permite registrar un nuevo prestamo ingresando fecha de prestamo, nombre del empleado , socio y el libro.
 
 [Acceso:](http://localhost:8000/biblioteca/prestamos/nuevo) puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/nuevo, desde el formulario "Listado de Prestamos" o desde la ["
@@ -176,6 +179,7 @@ def registrar_prestamo(request):
 <picture>
   <img alt="Pantalla para registrar un prestamo" src="Imagenes/listadoprestamos.PNG">
 </picture>
+
 Esta pantalla permite listar a todos los prestamos, poder gestionar la actualización ,eliminar  y/o agregar un nuevo prestamo.
 
 [Acceso:](http://localhost:8000/biblioteca/prestamos/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/listado , desde el formulario "Listado de Empleados" o desde la ["
