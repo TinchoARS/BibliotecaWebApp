@@ -120,8 +120,113 @@ def actualizar_empleado(request, empleado_id):
     # Se renderiza y retornamos el request al templeate 'actualizar empleado' con los datos del objeto 'empleado'
     return render(request, "biblioteca/actualizar_empleado.html", {"empleado" : empleado})
 ```
+>>### ***Módulo Prestamos de libros:***
+Este módulo permite resgistrar, modificar, eliminar  y mostrar a todos los prestamos de libros de la Biblioteca.
 
+Modelo de Datos:
+```python 
+class PrestamoLibro(models.Model):
+    fecha_prestamo = models.DateField(default=date.today)
+    fecha_devolucion = models.DateField(default=date.today)
+    socio = models.ForeignKey('Socio', related_name='socio', on_delete=models.CASCADE)
+    empleado = models.ForeignKey('Empleado', related_name='empleado', on_delete=models.CASCADE)
+    libro = models.ForeignKey('Libro', related_name='libro', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.socio.nombre}"
+        #Devuelve una cadena que representa el nombre del socio asociado al préstamo. Esto se utiliza para mostrar el nombre del socio cuando se imprime o se muestra una instancia de PrestamoLibro.
+```
+### **Registar Prestamo:**
+<picture>
+  <img alt="Pantalla para registrar un prestamo" src="Imagenes/registrarprestamo.png">
+</picture>
+Esta pantalla permite registrar un nuevo prestamo ingresando fecha de prestamo, nombre del empleado , socio y el libro.
+
+[Acceso:](http://localhost:8000/biblioteca/prestamos/nuevo) puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/nuevo, desde el formulario "Listado de Prestamos" o desde la ["
+Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def registrar_prestamo(request):
+    if request.POST:
+        fecha_Prestamo = datetime.strptime(request.POST["fecha_prestamo"],"%Y-%m-%d").date()
+        socio=request.POST["socio"]
+        empleado=request.POST["empleado"]
+        libro=request.POST["libro"]
+
+        fecha_devolucion = fecha_Prestamo + timedelta(days=2)
+        fecha_devolucion_str = fecha_devolucion.strftime("%Y-%m-%d")  # Convertir a cadena
+
+        PrestamoLibro.objects.create(
+        fecha_prestamo=fecha_Prestamo,
+        fecha_devolucion=fecha_devolucion_str,
+        socio_id=socio,
+        empleado_id=empleado,
+        libro_id=libro,
+        )
+
+    return render(request, "biblioteca/nuevos_prestamo_libro.html", {
+    'lista_empleados': Empleado.objects.all(),
+    'lista_socios': Socio.objects.all(),
+    'lista_libros': Libro.objects.all()
+    })
+
+```
+### **Listar Prestamos:**
+<picture>
+  <img alt="Pantalla para registrar un prestamo" src="Imagenes/listadoprestamos.png">
+</picture>
+Esta pantalla permite listar a todos los prestamos, poder gestionar la actualización ,eliminar  y/o agregar un nuevo prestamo.
+
+[Acceso:](http://localhost:8000/biblioteca/prestamos/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/listado , desde el formulario "Listado de Empleados" o desde la ["
+Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def listado_prestamos(request):
+  # Se cargan todos los registros de prestamos de la base a la variable listado_prestamos
+    listado_prestamos = PrestamoLibro.objects.all()
+  #Aquí se crea un diccionario llamado context que contiene una clave llamada "listado_prestamos" cuyo valor es la lista de préstamos obtenida en el paso anterior. Este diccionario se utiliza para pasar información adicional
+    context = {"listado_prestamos" : listado_prestamos}
+    #Se renderiza y se envían la lista con todos los prestamos al template 'listado de prestamos'
+    return render(request, "biblioteca/listado_prestamos.html", context )
+```
+### **Actualizar Prestamo:**
+<picture>
+  <img alt="Pantalla para actualizar un prestamo" src="Imagenes/actualizarprestamo.png">
+</picture>
+Esta pantalla permite actualizar el libro, socio y el empleado. seleccionado desde la pantalla 'listado de prestamos' 
+
+Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/listado , haciendo clic sobre el botón 'Actualizar'
+
+Vista:
+```python
+def actualizar_prestamo(request, id):
+    prestamo = get_object_or_404(PrestamoLibro, id=id)
+    listado_empleados= Empleado.objects.all()
+    listado_libros= Libro.objects.all()
+    listado_socios= Socio.objects.all()
+    
+    if request.method == 'POST':
+        empleado_prestamo = Empleado.objects.get(id=request.POST['empleado'])
+        socio_prestamo = Socio.objects.get(id=request.POST['socio'])
+        libro_prestamo = Libro.objects.get(id=request.POST['libro'])
+        
+        prestamo.empleado=empleado_prestamo
+        prestamo.socio=socio_prestamo
+        prestamo.libro=libro_prestamo
+        prestamo.save()
+        return redirect("listado_prestamos")
+    
+    context = {'prestamo': prestamo,
+            'listado_empleados' : listado_empleados,
+            'listado_libros' : listado_libros,
+            'listado_socios' : listado_socios 
+    }
+    
+    return render(request, 'biblioteca/actualizar_prestamo.html', context)
+
+```
 >## Autores:
 **Comision 4 Squad 2**
 - Arredes Javier Ricardo
