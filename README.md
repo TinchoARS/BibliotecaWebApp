@@ -556,9 +556,110 @@ def actualizar_libro(request, autor_id):
     context = {'libro': libro,'listado_autores' : listado_autores }
     return render(request, 'biblioteca/actualizar_libro.html', context)
 ```
+> ## Aplicación ADMIN:
+Django instala como parte de su framework en forma automática la aplicación de administración de permite usar los modelos creados en una aplicación para construir automáticamente un área dentro del sitio que puedes usar para crear, consultar, actualizar y borrar registros. Esto puede ahorrarte mucho tiempo de desarrollo, haciendo muy fácil probar nuestros modelos y darte una idea de si nuestros datos son correctos. La aplicación de administración también puede ser útil para manejar datos en producción, dependiendo del estilo del sitio web. Desde el proyecto Django solo se recomienda para gestión de datos internos (por ejemplo, solo para uso de administradores o personas internas de tu organización), ya que como enfoque centrado en el modelo no es necesariamente la mejor interfaz posible para todos los usuarios, exponiendo una gran cantidad de detalles innecesarios de los modelos.
+### **Registrar los modelos**
+Para registrar y tener disponibles nuestros modelos en la aplicación necesitamos importarlos en el archivo ***admin.py** ubicado en el directorio de nuestra aplicación.
+
+```python
+# 'admin' se importa automáticamente al instalar Django
+from django.contrib import admin
+
+" Se deben importar todos los modelos que necesitaremos gestionar desde ADMIN
+from biblioteca.models import Autor, Empleado, Libro, PrestamoLibro, Socio
+
+```
+Luego se **crean las vistas de los modelos** para la aplicación, pudiendo agregar filtros de búsqueda y selección que necesitemos tener para los listados correspondientes. A continuación, se muestra como se define el modelo de Socio para la aplicación:
+```python
+# Se define el modelo Socio para la aplicación admin
+class SocioAdmin(admin.ModelAdmin):
+    
+# Se define el modelo relacionado para incluirse en la aplicación
+    model= Socio    
+
+	# Se definen los campos que serán mostrados en la aplicación para el modelo definido
+    list_display=[
+    "nombre",
+    "apellido",
+    "fecha_nacimiento",
+    "activo",
+    ]
+    # Se definen los campos por los que se filtrarán los registros según lo que ingresado en el campo de búsqueda
+    search_fields = [
+        "nombre",
+        "apellido",  
+    ]
+    # Se definen los campos de filtrado cuyos valores se mostrarán para poder ser seleccionados en una columna lateral al listado
+    list_filter = [
+        "activo"
+    ]
+```
+Por último, para que tenga efecto en la aplicación se debe registrar los modelos en la base de datos de la aplicación con el siguiente comando:
+
+```python
+admin.site.register(Socio, SocioAdmin)
+```
+Estos pasos de importación, definición y registración se repiten por cada modelo que se quiera gestionar desde la aplicación ADMIN
+
+### **Crear un usuario**
+Para lograr acceder a la aplicación debemos crear un usuario desde el entorno virtual de nuestro proyecto.
+Esto se realiza con el comando ***<python manage.py createsuperuser>*** el que nos permitirá definir el nombre de nuestro usuario, un correo electrónico y el password relacionado.
+
+<picture>
+  <img alt="Pantalla para listar libros" src="Imagenes/creacionusuarioadmin.png">
+</picture>
+
+Una vez creado el usuario podremos ingresar sus credenciales en la pantalla de logeo.
+
+### **Acceso a la aplicación**
+Se puede acceder a la aplicación desde http://localhost:8000/admin/ en donde aparecerá una pantalla de logeo .
+
+<picture>
+  <img alt="Pantalla de acceso a la aplicacion ADMIN" src="Imagenes/loginadmin.png">
+</picture>
+
+ Ingresando las credenciales de acceso correctas podremos acceder al sistema.
+
+<picture>
+  <img alt="Pantalla principal de ADMIN" src="Imagenes/principaladmin.png">
+</picture>
+
+Desde la pantalla principal podremos acceder al listado de nuestros modelos registrados, los cuales mostrarán un campo de búsqueda según los campos definidos en el archivo admin.py y en el lateral derecho los valores de los campos de filtrados registrados.
+
+<picture>
+  <img alt="Pantalla de Listado de Autores" src="Imagenes/listarconfiltroadmin.png">
+</picture>
+Además de visualizar y poder filtrar nuestros registros podremos agregar, actualizar y eliminar cualquiera de ello.
+
+<picture>
+  <img alt="Pantalla para crear un empleado" src="Imagenes/registraradmin.png">
+</picture>
+<p align="center">Pantalla para crear un empleado</p>
+
+<picture>
+  <img alt="Pantalla para modificar un empleado" src="Imagenes/modificaradmin.png">
+</picture>
+<p align="center">Pantalla para modificar un empleado</p>
+
+
+<picture>
+  <img alt="Pantalla para eliminar un empleado" src="Imagenes/eliminarempleadoadmin.png">
+</picture>
+<p align="center">Pantalla para eliminar un empleado</p>
 
 
 
+### **Gestión de Usuario:**
+
+Por otro lado, la aplicación nos proporciona la posibilidad de **gestionar todos los usuarios creados** pudiendo eliminarlos, crear uno nuevo, modificar sus datos y hasta eliminarlos.
+
+<picture>
+  <img alt="Pantalla para eliminar un empleado" src="Imagenes/gestionadmin.png">
+</picture>
+
+Existen otras funcionalidades como acceder al historial de cada registro, la gestión de grupos, entre otras, pero no están dentro del alcance de este documento.
+
+> ## Autores
 **Comision 4 Squad 2**
 - Arredes Javier Ricardo
 - Cayampi Segovia Ismael Braian
