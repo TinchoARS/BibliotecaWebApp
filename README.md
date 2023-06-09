@@ -11,8 +11,8 @@ Desde la configuración inicial de las entidades libro, autor, empleado y socio 
 - FrameWork DJANGO
 - Python
 - Jinga2
-- HTML/Boostrap
-- SQLLite3
+- HTML/Bootstrap
+- SQLite3
 - Git
 - Jira
 
