@@ -659,6 +659,91 @@ Por otro lado, la aplicación nos proporciona la posibilidad de **gestionar todo
 
 Existen otras funcionalidades como acceder al historial de cada registro, la gestión de grupos, entre otras, pero no están dentro del alcance de este documento.
 
+
+### APIs
+
+## Autores
+- `GET /api/autores/` - Obtiene un listado de todos los autores.
+- `POST /api/autores/` - Crea un nuevo autor.
+- `GET /api/autores/{id}/` - Obtiene los detalles de un autor específico.
+- `PUT /api/autores/{id}/` - Actualiza los detalles de un autor específico.
+- `DELETE /api/autores/{id}/` - Elimina un autor específico.
+```python
+def listado_autor(request):
+    # Obtiene todos los autores
+    autores = Autor.objects.all()
+    
+    autores_data = []
+    for autor in autores:
+        # Crea un diccionario con los datos del autor
+        autor_data = {
+            'id': autor.id,
+            'nombre': autor.nombre,
+            'apellido': autor.apellido,
+            'nacionalidad': autor.nacionalidad,
+        }
+        autores_data.append(autor_data)
+    
+    # Retorna los datos de los autores como una respuesta JSON
+    return JsonResponse(autores_data, safe=False)
+
+```
+
+## Socios
+- `GET /api/socios/` - Obtiene un listado de todos los socios.
+- `POST /api/socios/` - Crea un nuevo socio.
+- `GET /api/socios/{id}/` - Obtiene los detalles de un socio específico.
+- `PUT /api/socios/{id}/` - Actualiza los detalles de un socio específico.
+- `DELETE /api/socios/{id}/` - Elimina un socio específico.
+```python
+def listado_socio(request):
+    # Obtiene todos los socios
+    socios = Socio.objects.all()
+    
+    socios_data = []
+    for socio in socios:
+        # Crea un diccionario con los datos del socio
+        socio_data = {
+            'id': socio.id,
+            'nombre': socio.nombre,
+            'apellido': socio.apellido,
+            'fecha_nacimiento': socio.fecha_nacimiento,
+        }
+        socios_data.append(socio_data)
+    
+    # Retorna los datos de los socios como una respuesta JSON
+    return JsonResponse(socios_data, safe=False)
+
+```
+
+## Empleados
+- `GET /api/empleados/` - Obtiene un listado de todos los empleados.
+- `POST /api/empleados/` - Crea un nuevo empleado.
+- `GET /api/empleados/{id}/` - Obtiene los detalles de un empleado específico.
+- `PUT /api/empleados/{id}/` - Actualiza los detalles de un empleado específico.
+- `DELETE /api/empleados/{id}/` - Elimina un empleado específico.
+
+```python
+def listado_empleado(request):
+    # Obtiene todos los empleados
+    empleados = Empleado.objects.all()
+
+    empleados_data = []
+    for empleado in empleados:
+        # Crea un diccionario con los datos del empleado
+        empleado_data = {
+            'id': empleado.id,
+            'nombre': empleado.nombre,
+            'apellido': empleado.apellido,
+            'numero_legajo': empleado.numero_legajo,
+        }
+        empleados_data.append(empleado_data)
+    
+    # Retorna los datos de los empleados como una respuesta JSON
+    return JsonResponse(empleados_data, safe=False)
+
+```
+
 > ## Autores
 **Comision 4 Squad 2**
 - Arredes Javier Ricardo
