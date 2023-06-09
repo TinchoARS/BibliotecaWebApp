@@ -660,14 +660,13 @@ Por otro lado, la aplicación nos proporciona la posibilidad de **gestionar todo
 Existen otras funcionalidades como acceder al historial de cada registro, la gestión de grupos, entre otras, pero no están dentro del alcance de este documento.
 
 
-### APIs
-
+### API
+ La API se encargan de obtener los datos de los empleados, socios y autores almacenados en la base de datos y devolverlos en forma de respuestas JSON cuando se realizan solicitudes GET a los endpoints correspondientes.
 ## Autores
+
 - `GET /api/autores/` - Obtiene un listado de todos los autores.
-- `POST /api/autores/` - Crea un nuevo autor.
 - `GET /api/autores/{id}/` - Obtiene los detalles de un autor específico.
-- `PUT /api/autores/{id}/` - Actualiza los detalles de un autor específico.
-- `DELETE /api/autores/{id}/` - Elimina un autor específico.
+
 ```python
 def listado_autor(request):
     # Obtiene todos los autores
@@ -691,10 +690,8 @@ def listado_autor(request):
 
 ## Socios
 - `GET /api/socios/` - Obtiene un listado de todos los socios.
-- `POST /api/socios/` - Crea un nuevo socio.
 - `GET /api/socios/{id}/` - Obtiene los detalles de un socio específico.
-- `PUT /api/socios/{id}/` - Actualiza los detalles de un socio específico.
-- `DELETE /api/socios/{id}/` - Elimina un socio específico.
+
 ```python
 def listado_socio(request):
     # Obtiene todos los socios
@@ -718,10 +715,8 @@ def listado_socio(request):
 
 ## Empleados
 - `GET /api/empleados/` - Obtiene un listado de todos los empleados.
-- `POST /api/empleados/` - Crea un nuevo empleado.
 - `GET /api/empleados/{id}/` - Obtiene los detalles de un empleado específico.
-- `PUT /api/empleados/{id}/` - Actualiza los detalles de un empleado específico.
-- `DELETE /api/empleados/{id}/` - Elimina un empleado específico.
+
 
 ```python
 def listado_empleado(request):
