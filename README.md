@@ -660,8 +660,8 @@ Por otro lado, la aplicación nos proporciona la posibilidad de **gestionar todo
 Existen otras funcionalidades como acceder al historial de cada registro, la gestión de grupos, entre otras, pero no están dentro del alcance de este documento.
 
 
-### API
- La API se encargan de obtener los datos de los empleados, socios y autores almacenados en la base de datos y devolverlos en forma de respuestas JSON cuando se realizan solicitudes GET a los endpoints correspondientes.
+# API
+ Se encargan de obtener los datos de los empleados, socios y autores almacenados en la base de datos y devolverlos en forma de respuestas JSON cuando se realizan solicitudes GET a los endpoints correspondientes.
 ## Autores
 
 - `GET /api/autores/` - Obtiene un listado de todos los autores.
