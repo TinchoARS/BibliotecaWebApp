@@ -665,7 +665,6 @@ Existen otras funcionalidades como acceder al historial de cada registro, la ges
 ## Autores
 
 - `GET /api/autores/` - Obtiene un listado de todos los autores.
-- `GET /api/autores/{id}/` - Obtiene los detalles de un autor específico.
 
 ```python
 def listado_autor(request):
@@ -687,10 +686,71 @@ def listado_autor(request):
     return JsonResponse(autores_data, safe=False)
 
 ```
+<picture>
+  <img alt="Pantalla para mostrar los autores" src="Imagenes/apiautores.png">
+</picture>
+
+## Libros
+
+
+- `GET /api/libros/` - Obtiene un listado de todos los libros.
+
+```python
+def listado_libro(request):
+    # Obtiene todos los libros
+    libros = Libro.objects.all()
+
+    libros_data = []
+    for libro in libros:
+        # Crea un diccionario con los datos del libro
+        libro_data = {
+            'id': libro.id,
+            'titulo': libro.titulo,
+            'autor': {
+                'nombre': libro.autor.nombre,
+                'apellido': libro.autor.apellido,
+            },
+        }
+        libros_data.append(libro_data)
+    # Retorna los datos de los libros como una respuesta JSON
+    return JsonResponse(libros_data, safe=False)
+
+```
+<picture>
+  <img alt="Pantalla para mostrar los libros" src="Imagenes/apilibros.png">
+</picture>
+
+- `GET /api/libros/{id}/` - Obtiene los detalles de un libro dada la id
+
+```python
+def registro_libro(request, id):
+    # Obtiene un objeto especifico del modelo Libro dada la id
+    libro = get_object_or_404(Libro, id=id)
+
+    # Crea un diccionario con los datos del autor del libro
+    autor_data = {
+        'id': libro.autor.id,
+        'nombre': libro.autor.nombre,
+        'apellido': libro.autor.apellido,
+    }
+
+    # Crea un diccionario con los datos del libro, agregando tambien el diccionario previamente creado
+    libro_data = {
+        'id': libro.id,
+        'titulo': libro.titulo,
+        'descripcion': libro.descripcion,
+        'autor': autor_data,
+    }
+    # Retorna los datos del libro como una respuesta JSON
+    return JsonResponse(libro_data)
+
+```
+<picture>
+  <img alt="Pantalla para mostrar los datos de un libro" src="Imagenes/apilibrosid.png">
+</picture>
 
 ## Socios
 - `GET /api/socios/` - Obtiene un listado de todos los socios.
-- `GET /api/socios/{id}/` - Obtiene los detalles de un socio específico.
 
 ```python
 def listado_socio(request):
@@ -712,11 +772,12 @@ def listado_socio(request):
     return JsonResponse(socios_data, safe=False)
 
 ```
+<picture>
+  <img alt="Pantalla para mostrar los socios" src="Imagenes/apisocios.png">
+</picture>
 
 ## Empleados
 - `GET /api/empleados/` - Obtiene un listado de todos los empleados.
-- `GET /api/empleados/{id}/` - Obtiene los detalles de un empleado específico.
-
 
 ```python
 def listado_empleado(request):
@@ -738,11 +799,14 @@ def listado_empleado(request):
     return JsonResponse(empleados_data, safe=False)
 
 ```
+<picture>
+  <img alt="Pantalla para mostrar los empleados" src="Imagenes/apiempleados.png">
+</picture>
 
-> ## Autores
+> ## Autores del proyecto
 **Comision 4 Squad 2**
 - Arredes Javier Ricardo
 - Cayampi Segovia Ismael Braian
 - Fradejas Soria Martín
-- Villa Cristian Nahuel
 - Ulloa Pablo Alfredo
+- Villa Cristian Nahuel
