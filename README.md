@@ -195,6 +195,7 @@ def listado_prestamos(request):
 <picture>
   <img alt="Pantalla para actualizar un prestamo" src="Imagenes/actualizarprestamo.png">
 </picture>
+
 Esta pantalla permite actualizar el libro, socio y el empleado. seleccionado desde la pantalla 'listado de prestamos' 
 
 Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/prestamos/listado , haciendo clic sobre el botón 'Actualizar'
