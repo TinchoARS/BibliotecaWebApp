@@ -138,7 +138,7 @@ class PrestamoLibro(models.Model):
 ```
 ### **Registar Prestamo:**
 <picture>
-  <img alt="Pantalla para registrar un prestamo" src="Imagenes/registrarprestamo.png">
+  <img alt="Pantalla para registrar un prestamo" src="Imagenes/registrarprestamo.PNG">
 </picture>
 Esta pantalla permite registrar un nuevo prestamo ingresando fecha de prestamo, nombre del empleado , socio y el libro.
 
@@ -174,7 +174,7 @@ def registrar_prestamo(request):
 ```
 ### **Listar Prestamos:**
 <picture>
-  <img alt="Pantalla para registrar un prestamo" src="Imagenes/listadoprestamos.png">
+  <img alt="Pantalla para registrar un prestamo" src="Imagenes/listadoprestamos.PNG">
 </picture>
 Esta pantalla permite listar a todos los prestamos, poder gestionar la actualización ,eliminar  y/o agregar un nuevo prestamo.
 
@@ -193,7 +193,7 @@ def listado_prestamos(request):
 ```
 ### **Actualizar Prestamo:**
 <picture>
-  <img alt="Pantalla para actualizar un prestamo" src="Imagenes/actualizarprestamo.png">
+  <img alt="Pantalla para actualizar un prestamo" src="Imagenes/actualizarprestamo.PNG">
 </picture>
 
 Esta pantalla permite actualizar el libro, socio y el empleado. seleccionado desde la pantalla 'listado de prestamos' 
