@@ -232,7 +232,333 @@ def actualizar_prestamo(request, id):
     return render(request, 'biblioteca/actualizar_prestamo.html', context)
 
 ```
->## Autores:
+>>### ***Módulo Autores:***
+
+Este módulo permite resgistrar, modificar, eliminar lógicamente y mostrar a todos los autores de la Biblioteca. Básicamente es un **CRUD de autores**.
+
+Modelo de Datos:
+
+```python
+class Autor(models.Model):
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    nacionalidad = models.CharField(max_length=60)
+    activo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+```
+
+### **Registar Autor:**
+
+<picture>
+    <img alt="Pantalla para registrar un autor" src="Imagenes/registrarautor.png">
+</picture>
+
+Esta pantalla permite registrar un nuevo autor ingresando Nombre, Apellido y Nacionalidad. 
+
+[Acceso:](http://localhost:8000/biblioteca/autores/nuevo/) puede acceder al formulario desde la url http://localhost:8000/biblioteca/autores/nuevo/ , desde el formulario "Listado de Autores" o desde la ["Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def registrar_autores(request):
+    if request.POST:
+                # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+        nombre_autor = request.POST["nombre"]
+        apellido_autor = request.POST["apellido"]
+        nacionalidad_autor = request.POST["nacionalidad"]
+            # Se crea el objeto de la clase 'Autor' con los datos de las variables y este se registra en la base de datos.
+
+        Autor.objects.create(
+        nombre=nombre_autor,
+        apellido=apellido_autor,
+        nacionalidad=nacionalidad_autor
+        )
+                    # Se renderiza y retornamos el request al templeate 'nuevo autor'
+    return render(request,"biblioteca/nuevos_autores.html")
+```
+
+
+### **Listar Autores:**
+
+<picture>
+  <img alt="Pantalla para listar autores" src="Imagenes/listadoautores.png">
+</picture>
+
+Esta pantalla permite listar a todos los autores, tanto activos como inactivos de la biblioteca y poder gestionar la actualización de sus datos, activar o desartivar su estado y/o agregar un nuevo autor.
+
+[Acceso:](http://localhost:8000/biblioteca/autores/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/autores/listado , desde el formulario "Listado de autores" o desde la ["
+Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def listado_autores(request):
+     # Se cargan todos los registros de empleados de la base a la variable lista_autores
+
+    lista_autores = Autor.objects.all()
+      #Se renderiza y se envían la lista con todos los empleados al template 'listado de empleados'
+    return render(request, "biblioteca/listado_autores.html", {"lista_autores" : lista_autores})
+```
+### **Actualizar Autor:**
+<picture>
+  <img alt="Pantalla para la actulizacion de un autor" src="Imagenes/actualizarautor.png">
+</picture>
+
+Esta pantalla permite actualizar el nombre, apellido y la nacionalidad de un autor seleccionado desde la pantalla 'listado de autores' 
+
+Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/autores/listado/ , haciendo clic sobre el botón 'Actualizar'
+
+Vista:
+```python
+def actualizar_autor(request, autor_id):
+      # Se cargan los datos de la base correspondientes con el id del autor seleccionado desde el template 'listado de autores' en la variable autor
+
+    autor = get_object_or_404(Autor, id=autor_id)
+
+    if request.method == 'POST':
+      # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+
+        nombre_autor = request.POST.get('nombre')
+        apellido_autor = request.POST.get('apellido')
+        nacionalidad_autor = request.POST.get('nacionalidad')
+        # Se actualiza el objeto 'autor' con los datos recibidos del formulario
+
+        autor.nombre=nombre_autor
+        autor.apellido=apellido_autor
+        autor.nacionalidad=nacionalidad_autor
+        autor.save()
+                # Se retorna a la página con el listado de autores actualizada
+
+        return redirect("listado_autores")
+
+    # Se renderiza y retornamos el request al templeate 'actualizar autor' con los datos del objeto 'autor'
+
+    context = {'autor': autor}
+    return render(request, 'biblioteca/actualizar_autor.html', context)
+```
+>>### ***Módulo Socios:***
+
+Este módulo permite resgistrar, modificar, eliminar lógicamente y mostrar a todos los socios de la Biblioteca. Básicamente es un **CRUD de socios**.
+
+Modelo de Datos:
+
+```python
+class Socio(models.Model):
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
+    activo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+```
+
+### **Registar Socio:**
+
+<picture>
+    <img alt="Pantalla para registrar un socio" src="Imagenes/registrarsocio.png">
+</picture>
+
+Esta pantalla permite registrar un nuevo socio ingresando Nombre, Apellido y fecha de nacimiento. 
+
+[Acceso:](http://localhost:8000/biblioteca/socios/nuevo/) puede acceder al formulario desde la url http://localhost:8000/biblioteca/socios/nuevo/ , desde el formulario "Listado de socios" o desde la ["Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def registrar_socio(request):
+    if request.POST:
+                # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+        nombre_socio = request.POST["nombre"]
+        apellido_socio = request.POST["apellido"]
+        fecha_nacimiento_socio = request.POST["fecha_nacimiento"]
+            # Se crea el objeto de la clase 'Autor' con los datos de las variables y este se registra en la base de datos.
+
+        Socio.objects.create(
+        nombre=nombre_socio,
+        apellido=apellido_socio,
+        fecha_nacimiento=fecha_nacimiento_socio
+        )
+                    # Se renderiza y retornamos el request al templeate 'nuevo socio'
+    return render(request,"biblioteca/nuevos_socios.html")
+```
+
+
+### **Listar Socios:**
+
+<picture>
+  <img alt="Pantalla para listar socios" src="Imagenes/listadosocios.png">
+</picture>
+
+Esta pantalla permite listar a todos los socios, tanto activos como inactivos de la biblioteca y poder gestionar la actualización de sus datos, activar o desactivar su estado y/o agregar un nuevo socio.
+
+[Acceso:](http://localhost:8000/biblioteca/socios/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/socios/listado , desde el formulario "Listado de socios" o desde la ["
+Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def listado_socios(request):
+     # Se cargan todos los registros de socios de la base a la variable lista_socios
+
+    lista_socios = Socio.objects.all()
+      #Se renderiza y se envían la lista con todos los socios al template 'listado de socios'
+    return render(request, "biblioteca/listado_socios.html", {"lista_socios" : lista_socios})
+
+```
+### **Actualizar Socio:**
+<picture>
+  <img alt="Pantalla para la actulizacion de un socio" src="Imagenes/actualizarsocio.png">
+</picture>
+
+Esta pantalla permite actualizar el nombre, apellido y la fecha de nacimiento de un socio seleccionado desde la pantalla 'listado de socios' 
+
+Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/socios/listado/ , haciendo clic sobre el botón 'Actualizar'
+
+Vista:
+```python
+def actualizar_autor(request, autor_id):
+      # Se cargan los datos de la base correspondientes con el id del socio seleccionado desde el template 'listado de socios' en la variable socio
+
+    socio = get_object_or_404(Socio, id=socio_id)
+
+    if request.method == 'POST':
+      # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+
+        nombre_socio = request.POST['nombre']
+        apellido_socio = request.POST['apellido']
+        fecha_nacimiento_socio = request.POST['fecha_nacimiento']
+        # Se actualiza el objeto 'socio' con los datos recibidos del formulario
+
+        socio.nombre=nombre_socio
+        socio.apellido=apellido_socio
+        fecha_dt=datetime.strptime(fecha_nacimiento_socio,'%Y-%m-%d')
+        socio.fecha_nacimiento= fecha_dt
+        socio.save()
+                # Se retorna a la página con el listado de socios actualizada
+
+        return redirect("listado_socios")
+
+    # Se renderiza y retornamos el request al templeate 'actualizar socio' con los datos del objeto 'socio'
+
+    return render(request, 'biblioteca/actualizar_socio.html', {"socio" : socio})
+
+```
+
+>>### ***Módulo Libros:***
+
+Este módulo permite resgistrar, modificar, eliminar lógicamente y mostrar a todos los libros de la Biblioteca. Básicamente es un **CRUD de libros**.
+
+Modelo de Datos:
+
+```python
+class Libro(models.Model):
+    titulo = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=255)
+    isbn = models.IntegerField()
+    autor = models.ForeignKey(Autor,related_name="libros",on_delete=models.CASCADE)
+    activo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.titulo}-ISBN:{self.isbn}"
+```
+
+### **Registar Libro:**
+
+<picture>
+    <img alt="Pantalla para registrar un libro" src="Imagenes/registrarlibro.png">
+</picture>
+
+Esta pantalla permite registrar un nuevo libro ingresando Titulo, Descripcion , ISBN y autor. 
+
+[Acceso:](http://localhost:8000/biblioteca/libros/nuevo/) puede acceder al formulario desde la url http://localhost:8000/biblioteca/libros/nuevo/ , desde el formulario "Listado de libros" o desde la ["Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def registrar_libro(request):
+    listado_autores = Autor.objects.all()
+    if request.POST:
+                # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+        titulo_libro = request.POST["titulo"]
+        descripcion_libro = request.POST["descripcion"]
+        isbn_libro = request.POST["isbn"]
+        autor_libro = request.POST["autor"]
+            # Se crea el objeto de la clase 'Libro' con los datos de las variables y este se registra en la base de datos.
+
+        Libro.objects.create(
+        titulo=titulo_libro,
+        descripcion=descripcion_libro,
+        isbn=isbn_libro,
+        autor=Autor.objects.get(id=autor_libro)
+        )
+                    # Se renderiza y retornamos el request al templeate 'nuevo libro',tambien se pasa que el listado de autores para acceder a los autores disponibles
+    context = {'listado_autores':listado_autores} 
+    return render(request, "biblioteca/nuevos_libros.html", context)
+```
+
+
+### **Listar Libros:**
+
+<picture>
+  <img alt="Pantalla para listar libros" src="Imagenes/listadolibros.png">
+</picture>
+
+Esta pantalla permite listar a todos los libros, tanto activos como inactivos de la biblioteca y poder gestionar la actualización de sus datos, activar o desactivar su estado y/o agregar un nuevo libro.
+
+[Acceso:](http://localhost:8000/biblioteca/libros/listado) puede acceder al formulario desde la url http://localhost:8000/biblioteca/libros/listado , desde el formulario "Listado de libros" o desde la ["
+Home Page"](http://localhost:8000/biblioteca/pagina_principal/)
+
+Vista:
+```python
+def listado_libros(request):
+     # Se cargan todos los registros de libros de la base a la variable lista_libros
+    listado_libros = Libro.objects.all()
+    context = {"listado_libros" : listado_libros}
+      #Se renderiza y se envían la lista con todos los libros al template 'listado de libros'
+    return render(request, "biblioteca/listado_libros.html", context )
+
+
+```
+### **Actualizar Libro:**
+<picture>
+  <img alt="Pantalla para la actulizacion de un libro" src="Imagenes/actualizarlibro.png">
+</picture>
+
+  Esta pantalla permite actualizar el titulo, descripcion,ISBN el autor de un libro seleccionado desde la pantalla 'listado de libros' 
+
+Acceso: puede acceder al formulario desde la url http://localhost:8000/biblioteca/libros/listado/ , haciendo clic sobre el botón 'Actualizar'
+
+Vista:
+```python
+def actualizar_libro(request, autor_id):
+      # Se cargan los datos de la base correspondientes con el id libro seleccionado desde el template 'listado de libro' en la variable libro , tambien cargamos el listado de autores para su acceso
+
+    libro = get_object_or_404(Libro, id=id)
+    listado_autores = Autor.objects.all()
+
+    if request.method == 'POST':
+      # Se cargan las variables con los datos que se reciben desde el formulario por el método POST
+
+        titulo_libro = request.POST['titulo']
+        descripcion_libro = request.POST['descripcion']
+        isbn_libro = request.POST['isbn']
+        autor_libro = Autor.objects.get(id=request.POST['autor'])
+        # Se actualiza el objeto 'libro' con los datos recibidos del formulario
+
+        libro.titulo=titulo_libro
+        libro.descripcion=descripcion_libro
+        libro.isbn=isbn_libro
+        libro.autor=autor_libro
+        libro.save()
+                # Se retorna a la página con el listado de libros actualizada
+
+        return redirect("listado_libros")
+
+    # Se renderiza y retornamos el request al templeate 'actualizar libro' con los datos del objeto 'libro'
+    context = {'libro': libro,'listado_autores' : listado_autores }
+    return render(request, 'biblioteca/actualizar_libro.html', context)
+```
+
+
+
 **Comision 4 Squad 2**
 - Arredes Javier Ricardo
 - Cayampi Segovia Ismael Braian

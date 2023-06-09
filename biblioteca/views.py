@@ -75,7 +75,6 @@ def registrar_autores(request):
         apellido=apellido_autor,
         nacionalidad=nacionalidad_autor
         )
-        return redirect("listado_autores")
     return render(request,"biblioteca/nuevos_autores.html")
 
 
